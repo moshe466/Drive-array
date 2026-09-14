@@ -13,12 +13,20 @@ public class FirebaseInstanceId {
         return FirebaseMessaging.getInstance().getToken().continueWith(task -> new InstanceIdResult() {
             @Override
             public String getId() {
-                return task.getResult();
+                try {
+                    return task.isSuccessful() ? task.getResult() : "";
+                } catch (Exception e) {
+                    return "";
+                }
             }
 
             @Override
             public String getToken() {
-                return task.getResult();
+                try {
+                    return task.isSuccessful() ? task.getResult() : "";
+                } catch (Exception e) {
+                    return "";
+                }
             }
         });
     }

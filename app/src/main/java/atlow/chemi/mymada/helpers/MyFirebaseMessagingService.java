@@ -29,21 +29,37 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     /* JADX INFO: Access modifiers changed from: package-private */
     public static /* synthetic */ void a(Context context, Task task) {
-        if (task.isSuccessful()) {
-            context.getSharedPreferences("Settings", 0).edit().putString("fcm", ((InstanceIdResult) task.getResult()).getToken()).apply();
-        } else {
-            Crashlytics.log("didn't succeed getting token");
-            Crashlytics.logException(task.getException());
+        try {
+            if (task != null && task.isSuccessful() && task.getResult() != null) {
+                Object res = task.getResult();
+                String tokenStr = "";
+                if (res instanceof InstanceIdResult) {
+                    tokenStr = ((InstanceIdResult) res).getToken();
+                } else if (res instanceof String) {
+                    tokenStr = (String) res;
+                }
+                if (tokenStr != null && !tokenStr.isEmpty() && context != null) {
+                    context.getSharedPreferences("Settings", 0).edit().putString("fcm", tokenStr).apply();
+                }
+            } else if (task != null && task.getException() != null) {
+                Crashlytics.log("didn't succeed getting token: " + task.getException().getMessage());
+            }
+        } catch (Throwable t) {
+            Crashlytics.log("Exception getting fcm token: " + t.getMessage());
         }
     }
 
     public static void getToken(final Context context) {
-        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener() { // from class: atlow.chemi.mymada.helpers.a
-            @Override // com.google.android.gms.tasks.OnCompleteListener
-            public final void onComplete(Task task) {
-                MyFirebaseMessagingService.a(context, task);
-            }
-        });
+        try {
+            FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener() { // from class: atlow.chemi.mymada.helpers.a
+                @Override // com.google.android.gms.tasks.OnCompleteListener
+                public final void onComplete(Task task) {
+                    MyFirebaseMessagingService.a(context, task);
+                }
+            });
+        } catch (Throwable t) {
+            Crashlytics.log("Failed to start getToken: " + t.getMessage());
+        }
     }
 
     private void sendNotification(int i, String str, String str2, String str3) {
