@@ -528,6 +528,7 @@ public class HomePage extends AppCompatActivity {
 
         updateDashboardState();
         updatePermissionPills();
+        requestQuickSettingsTile();
 
         boolean z2 = sharedPreferences.getBoolean("privacy", false);
         if (sharedPreferences.getBoolean("oldU", false)) {
@@ -542,6 +543,36 @@ public class HomePage extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), SettingsPage.class);
             ShowDialog(getString(R.string.newSettings), getString(R.string.title_activity_settings), intent);
             checkLocationPermission();
+        }
+    }
+
+    private void requestQuickSettingsTile() {
+        if (Build.VERSION.SDK_INT >= 33) {
+            SharedPreferences sp = getSharedPreferences("Settings", 0);
+            boolean alreadyRequested = sp.getBoolean("qs_metronome_tile_requested", false);
+            if (!alreadyRequested) {
+                try {
+                    android.app.StatusBarManager statusBarManager = (android.app.StatusBarManager) getSystemService(Context.STATUS_BAR_SERVICE);
+                    if (statusBarManager != null) {
+                        android.content.ComponentName componentName = new android.content.ComponentName(this, atlow.chemi.mymada.recieversAndServices.MyTileService.class);
+                        android.graphics.drawable.Icon icon = android.graphics.drawable.Icon.createWithResource(this, R.drawable.ic_tile_heart_metronome);
+                        statusBarManager.requestAddTileService(
+                                componentName,
+                                getString(R.string.button_d),
+                                icon,
+                                getMainExecutor(),
+                                new java.util.function.Consumer<Integer>() {
+                                    @Override
+                                    public void accept(Integer result) {
+                                    }
+                                }
+                        );
+                        sp.edit().putBoolean("qs_metronome_tile_requested", true).apply();
+                    }
+                } catch (Exception e) {
+                    Crashlytics.logException(e);
+                }
+            }
         }
     }
 
