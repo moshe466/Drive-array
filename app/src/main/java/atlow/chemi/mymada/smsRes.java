@@ -376,8 +376,14 @@ public class smsRes extends AppCompatActivity {
             kodRTV.setText(kodStr);
         }
 
-        // Calculate and display distance and ETA from current GPS location
-        calculateDistanceAndEta(addressStr != null && !addressStr.isEmpty() ? addressStr : smsStr);
+        // Calculate and display distance and ETA from current GPS location (only for emergency calls)
+        if (callT == 1 || callT == 2) {
+            calculateDistanceAndEta(addressStr != null && !addressStr.isEmpty() ? addressStr : smsStr);
+        } else {
+            if (this.tvDistanceEta != null) {
+                this.tvDistanceEta.setVisibility(View.GONE);
+            }
+        }
 
         if (buttonI != null) {
             buttonI.setOnClickListener(new View.OnClickListener() {

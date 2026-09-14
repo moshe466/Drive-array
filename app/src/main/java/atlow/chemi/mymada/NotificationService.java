@@ -151,8 +151,27 @@ public class NotificationService extends NotificationListenerService {
                 if (isSystemMessage(fullText)) {
                     return;
                 }
-                intent.putExtra("callT", 1);
-                intent.putExtra("org_title", "איחוד הצלה - קריאת חירום");
+
+                boolean isAdministrative = fullText.contains("שובצת לאירוע") ||
+                                           fullText.contains("שיבוץ") ||
+                                           fullText.contains("צוותת") ||
+                                           fullText.contains("ביטול אירוע") ||
+                                           fullText.contains("אירוע בוטל") ||
+                                           fullText.contains("סיום אירוע") ||
+                                           fullText.contains("מנהלתי") ||
+                                           fullText.contains("מינהלתי") ||
+                                           fullText.contains("הודעת מוקד") ||
+                                           fullText.contains("עדכון מוקד") ||
+                                           fullText.contains("הודעת סניף") ||
+                                           fullText.contains("תזכורת");
+
+                if (isAdministrative) {
+                    intent.putExtra("callT", 4);
+                    intent.putExtra("org_title", "איחוד הצלה - הודעה מנהלתית");
+                } else {
+                    intent.putExtra("callT", 1);
+                    intent.putExtra("org_title", "איחוד הצלה - קריאת חירום");
+                }
                 intent.putExtra("address", this.a != null && !this.a.isEmpty() ? this.a : (string != null ? string : "קריאת חירום"));
                 intent.putExtra("sms", this.a != null ? this.a : "");
                 intent.putExtra("title", string != null ? string : "איחוד הצלה");
