@@ -120,6 +120,19 @@
                 android:layout_marginEnd="6dp" />
 
             <TextView
+                android:id="@+id/chip_team"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:background="@drawable/chip_unselected_bg"
+                android:gravity="center"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:text="@string/sound_target_team"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="14sp"
+                android:layout_marginEnd="6dp" />
+
+            <TextView
                 android:id="@+id/chip_admin"
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"

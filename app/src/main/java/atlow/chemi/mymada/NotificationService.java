@@ -171,7 +171,23 @@ public class NotificationService extends NotificationListenerService {
                     return;
                 }
 
-                boolean isAdministrative = fullText.contains("שובצת לאירוע") ||
+                boolean isTeam = fullText.contains("רחובות 143") ||
+                                 fullText.contains("מ 44") ||
+                                 fullText.contains("הודעת צוות") ||
+                                 fullText.contains("הודעת קבוצה") ||
+                                 fullText.contains("צוות כוננים");
+
+                boolean isAdministrative = fullText.contains("FORMS") ||
+                                           fullText.contains("טפסים") ||
+                                           fullText.contains("מילוי טופס") ||
+                                           fullText.contains("פריסה מבצעית") ||
+                                           fullText.contains("ניהול תקפים") ||
+                                           fullText.contains("איוונט") ||
+                                           fullText.contains("GIVERESPECT") ||
+                                           fullText.contains("כבוד המת") ||
+                                           fullText.contains("גנרל") ||
+                                           fullText.contains("GENERAL") ||
+                                           fullText.contains("שובצת לאירוע") ||
                                            fullText.contains("שיבוץ") ||
                                            fullText.contains("צוותת") ||
                                            fullText.contains("ביטול אירוע") ||
@@ -184,7 +200,14 @@ public class NotificationService extends NotificationListenerService {
                                            fullText.contains("הודעת סניף") ||
                                            fullText.contains("תזכורת");
 
-                if (isAdministrative) {
+                if (isTeam) {
+                    intent.putExtra("callT", 7);
+                    intent.putExtra("org_title", "איחוד הצלה - הודעת צוות");
+                } else if (isAdministrative) {
+                    boolean showAdmin = getSharedPreferences("Settings", 0).getBoolean("callT4", true);
+                    if (!showAdmin) {
+                        return;
+                    }
                     intent.putExtra("callT", 4);
                     intent.putExtra("org_title", "איחוד הצלה - הודעה מנהלתית");
                 } else {
@@ -202,21 +225,28 @@ public class NotificationService extends NotificationListenerService {
                 if (string.contains("*אירוע חדש*") || string.contains("*New Event*")) {
                     if (this.a.contains("שירות") || this.a.contains("כלכלה") || this.a.contains("תפילה")) {
                         intent.putExtra("callT", 6);
+                        intent.putExtra("org_title", "מד״א - הודעת שירות");
                     } else if (this.a.contains("מנהלתי") || this.a.contains("מינהלתי") || this.a.contains("משמרת בנה")) {
                         intent.putExtra("callT", 4);
+                        intent.putExtra("org_title", "מד״א - הודעה מנהלתית");
                     } else {
                         if (!this.a.contains("אירוע חדש")) {
                             if (this.a.contains("הודעת קבוצת")) {
                                 i = 3; // group message
+                                intent.putExtra("org_title", "מד״א - הודעת קבוצה");
                             } else if (this.a.contains("הודעת צוות")) {
                                 i = 7; // team message
+                                intent.putExtra("org_title", "מד״א - הודעת צוות");
                             } else if (this.a.contains("על מידע זה חל חיסיון רפואי")) {
                                 i = 5;
+                                intent.putExtra("org_title", "מד״א - חיסיון רפואי");
                             } else {
                                 i = 2; // MDA new event
+                                intent.putExtra("org_title", "מד״א - קריאת חירום");
                             }
                         } else {
                             i = 2; // MDA new event
+                            intent.putExtra("org_title", "מד״א - קריאת חירום");
                         }
                         intent.putExtra("callT", i);
                     }
@@ -230,17 +260,30 @@ public class NotificationService extends NotificationListenerService {
                         return;
                     }
                     intent.putExtra("callT", 4);
+                    intent.putExtra("org_title", "מד״א - הודעה מנהלתית");
                     if (this.a.contains("שירות") || this.a.contains("כלכלה") || this.a.contains("תפילה")) {
                         intent.putExtra("callT", 6);
+                        intent.putExtra("org_title", "מד״א - הודעת שירות");
                     }
                     if (this.a.contains("על מידע זה חל חיסיון רפואי")) {
                         intent.putExtra("callT", 5);
+                        intent.putExtra("org_title", "מד״א - חיסיון רפואי");
                     }
                 }
                 replace = string.replace(str3, "");
                 intent.putExtra("time", replace);
+                intent.putExtra("address", this.a != null && !this.a.isEmpty() ? this.a : string);
+                intent.putExtra("sms", this.a != null ? this.a : "");
+                intent.putExtra("title", string);
             } else {
                 return;
+            }
+
+            if (intent.getIntExtra("callT", 0) == 4) {
+                boolean showAdmin = getSharedPreferences("Settings", 0).getBoolean("callT4", true);
+                if (!showAdmin) {
+                    return;
+                }
             }
 
             GrobootRec.madasApp(notification.contentIntent);

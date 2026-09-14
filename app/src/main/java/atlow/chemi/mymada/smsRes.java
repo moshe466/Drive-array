@@ -223,7 +223,19 @@ public class smsRes extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        if ("T1".equals(this.string)) {
+        Intent intent = getIntent();
+        String pack = intent != null ? intent.getStringExtra("pack") : null;
+        if (pack != null && !pack.isEmpty()) {
+            try {
+                Intent launchIntent = getPackageManager().getLaunchIntentForPackage(pack);
+                if (launchIntent != null) {
+                    launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    startActivity(launchIntent);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if ("T1".equals(this.string)) {
             // callT=1 = Hatzalah → open com.uh.sf
             try {
                 Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.uh.sf");
@@ -345,6 +357,9 @@ public class smsRes extends AppCompatActivity {
             }
         }
 
+        String packName = intent != null ? intent.getStringExtra("pack") : "";
+        boolean isUh = "com.uh.sf".equals(packName) || (orgTitle != null && orgTitle.contains("איחוד הצלה"));
+
         if (callT == 1) {
             // Hatzalah (איחוד הצלה) — orange
             this.string = "T1";
@@ -373,12 +388,44 @@ public class smsRes extends AppCompatActivity {
                 msgTypeTV.setText("מגן דוד אדום - קריאת חירום");
                 msgTypeTV.setTextColor(android.graphics.Color.parseColor("#DC2626"));
             }
+        } else if (callT == 7 || callT == 3) {
+            // Team / Group message — purple
+            this.string = "T3";
+            if (newCTV != null) {
+                newCTV.setBackgroundColor(android.graphics.Color.parseColor("#7C3AED"));
+            }
+            if (bgIV != null) {
+                bgIV.setImageResource(isUh ? R.drawable.ic_hatzalah_logo : R.drawable.ic_mda);
+            }
+            if (msgTypeTV != null) {
+                msgTypeTV.setText(orgTitle != null && !orgTitle.isEmpty() ? orgTitle : "הודעת צוות וסניף");
+                msgTypeTV.setTextColor(android.graphics.Color.parseColor("#7C3AED"));
+            }
         } else if (callT == 4) {
+            // Administrative & Forms — blue
             this.string = "T4";
-            if (msgTypeTV != null) msgTypeTV.setText("הודעה מנהלתית");
+            if (newCTV != null) {
+                newCTV.setBackgroundColor(android.graphics.Color.parseColor("#0284C7"));
+            }
+            if (bgIV != null) {
+                bgIV.setImageResource(isUh ? R.drawable.ic_hatzalah_logo : R.drawable.ic_mda);
+            }
+            if (msgTypeTV != null) {
+                msgTypeTV.setText(orgTitle != null && !orgTitle.isEmpty() ? orgTitle : "הודעה מנהלתית וטפסים");
+                msgTypeTV.setTextColor(android.graphics.Color.parseColor("#0284C7"));
+            }
         } else if (callT == 6) {
             this.string = "T6";
-            if (msgTypeTV != null) msgTypeTV.setText("הודעת שירות");
+            if (newCTV != null) {
+                newCTV.setBackgroundColor(android.graphics.Color.parseColor("#0D9488"));
+            }
+            if (bgIV != null) {
+                bgIV.setImageResource(isUh ? R.drawable.ic_hatzalah_logo : R.drawable.ic_mda);
+            }
+            if (msgTypeTV != null) {
+                msgTypeTV.setText(orgTitle != null && !orgTitle.isEmpty() ? orgTitle : "הודעת שירות");
+                msgTypeTV.setTextColor(android.graphics.Color.parseColor("#0D9488"));
+            }
         }
 
         if (newCTV != null && orgTitle != null) {

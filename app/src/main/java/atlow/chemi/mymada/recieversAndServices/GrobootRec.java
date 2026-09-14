@@ -66,25 +66,32 @@ public class GrobootRec extends BroadcastReceiver {
         }
 
         int callT = intent.getIntExtra("callT", 0);
+        if (callT == 4 && !sp.getBoolean("callT4", true)) {
+            return;
+        }
+
         String time = intent.getStringExtra("time");
         String address = intent.getStringExtra("address");
         String sms = intent.getStringExtra("sms");
         String kod = intent.getStringExtra("kod");
 
         String suffix = "";
-        String orgTitle = "מקרה חדש";
+        String orgTitle = intent.hasExtra("org_title") ? intent.getStringExtra("org_title") : "מקרה חדש";
         if (callT == 1) {
             suffix = "T1";
-            orgTitle = "איחוד הצלה - מקרה חדש";
+            if (!intent.hasExtra("org_title")) orgTitle = "איחוד הצלה - קריאת חירום";
         } else if (callT == 2) {
             suffix = "T2";
-            orgTitle = "מד״א - מקרה חדש";
+            if (!intent.hasExtra("org_title")) orgTitle = "מד״א - קריאת חירום";
         } else if (callT == 4) {
             suffix = "T4";
-            orgTitle = "הודעה מנהלתית חדשה";
+            if (!intent.hasExtra("org_title")) orgTitle = "הודעה מנהלתית";
+        } else if (callT == 7 || callT == 3) {
+            suffix = "T3";
+            if (!intent.hasExtra("org_title")) orgTitle = "הודעת צוות";
         } else if (callT == 6) {
             suffix = "T6";
-            orgTitle = "הודעת שירות";
+            if (!intent.hasExtra("org_title")) orgTitle = "הודעת שירות";
         }
 
         // Check if sound/alert is enabled for this category

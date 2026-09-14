@@ -209,6 +209,7 @@
     <string name="sound_target_general">צליל כללי / רגיל</string>
     <string name="sound_target_hatzalah">איחוד הצלה</string>
     <string name="sound_target_mda">מד״א (מערך הכוננים)</string>
+    <string name="sound_target_team">הודעות צוות וסניף</string>
     <string name="sound_target_admin">הודעות מנהלתיות</string>
     <string name="sound_target_service">הודעות שירות</string>
     <string name="sound_siren_title">צפירת חירום (איחוד הצלה / מד״א)</string>

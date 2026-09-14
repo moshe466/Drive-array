@@ -188,6 +188,7 @@ public class SettingsNotificationsSounds extends Fragment implements View.OnClic
         final TextView chipGeneral = dialogView.findViewById(R.id.chip_general);
         final TextView chipHatzalah = dialogView.findViewById(R.id.chip_hatzalah);
         final TextView chipMda = dialogView.findViewById(R.id.chip_mda);
+        final TextView chipTeam = dialogView.findViewById(R.id.chip_team);
         final TextView chipAdmin = dialogView.findViewById(R.id.chip_admin);
         final TextView chipService = dialogView.findViewById(R.id.chip_service);
         final LinearLayout llSoundsList = dialogView.findViewById(R.id.ll_sounds_list);
@@ -230,6 +231,11 @@ public class SettingsNotificationsSounds extends Fragment implements View.OnClic
                 chipMda.setBackgroundResource(currentDialogTarget == 2 ? R.drawable.chip_selected_bg : R.drawable.chip_unselected_bg);
                 chipMda.setTextColor(ContextCompat.getColor(getActivity(), currentDialogTarget == 2 ? R.color.White : R.color.textColorPrimary));
 
+                if (chipTeam != null) {
+                    chipTeam.setBackgroundResource(currentDialogTarget == 3 ? R.drawable.chip_selected_bg : R.drawable.chip_unselected_bg);
+                    chipTeam.setTextColor(ContextCompat.getColor(getActivity(), currentDialogTarget == 3 ? R.color.White : R.color.textColorPrimary));
+                }
+
                 chipAdmin.setBackgroundResource(currentDialogTarget == 4 ? R.drawable.chip_selected_bg : R.drawable.chip_unselected_bg);
                 chipAdmin.setTextColor(ContextCompat.getColor(getActivity(), currentDialogTarget == 4 ? R.color.White : R.color.textColorPrimary));
 
@@ -251,6 +257,11 @@ public class SettingsNotificationsSounds extends Fragment implements View.OnClic
         chipMda.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { currentDialogTarget = 2; updateChips.run(); }
         });
+        if (chipTeam != null) {
+            chipTeam.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) { currentDialogTarget = 3; updateChips.run(); }
+            });
+        }
         chipAdmin.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { currentDialogTarget = 4; updateChips.run(); }
         });
@@ -449,6 +460,7 @@ public class SettingsNotificationsSounds extends Fragment implements View.OnClic
 
         String targetName = target == 1 ? getString(R.string.sound_target_hatzalah) :
                             target == 2 ? getString(R.string.sound_target_mda) :
+                            target == 3 ? getString(R.string.sound_target_team) :
                             target == 4 ? getString(R.string.sound_target_admin) :
                             target == 6 ? getString(R.string.sound_target_service) :
                             getString(R.string.sound_target_general);
@@ -459,6 +471,7 @@ public class SettingsNotificationsSounds extends Fragment implements View.OnClic
         if (target == 0 && this.NappT_Pref != null) setTrueOrFalse(true, this.NappT_Pref.getId());
         else if (target == 1 && this.NappT1_Pref != null) setTrueOrFalse(true, this.NappT1_Pref.getId());
         else if (target == 2 && this.NappT2_Pref != null) setTrueOrFalse(true, this.NappT2_Pref.getId());
+        else if (target == 3 && this.NappT3_Pref != null) setTrueOrFalse(true, this.NappT3_Pref.getId());
         else if (target == 4 && this.NappT4_Pref != null) setTrueOrFalse(true, this.NappT4_Pref.getId());
     }
 

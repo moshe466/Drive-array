@@ -153,6 +153,7 @@
     <string name="sound_target_general">General / Default Sound</string>
     <string name="sound_target_hatzalah">United Hatzalah</string>
     <string name="sound_target_mda">MDA (First Responders)</string>
+    <string name="sound_target_team">Team &amp; Branch Messages</string>
     <string name="sound_target_admin">Administrative Messages</string>
     <string name="sound_target_service">Service Messages</string>
     <string name="sound_siren_title">Emergency Siren (Hatzalah / MDA)</string>

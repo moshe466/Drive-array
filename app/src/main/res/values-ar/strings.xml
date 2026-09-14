@@ -153,6 +153,7 @@
     <string name="sound_target_general">صوت عام / افتراضي</string>
     <string name="sound_target_hatzalah">إيحود هتسلاه</string>
     <string name="sound_target_mda">نجمة داود (طاقم المستجيبين)</string>
+    <string name="sound_target_team">رسائل الفريق والفرع</string>
     <string name="sound_target_admin">الرسائل الإدارية</string>
     <string name="sound_target_service">رسائل الخدمة</string>
     <string name="sound_siren_title">صفارة الطوارئ (إيحود هتسلاه / نجمة داود)</string>
