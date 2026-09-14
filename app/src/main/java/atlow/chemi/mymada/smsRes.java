@@ -3,6 +3,7 @@ package atlow.chemi.mymada;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -192,9 +193,24 @@ public class smsRes extends AppCompatActivity {
         }
     }
 
-    public void a(View view) {
+    public void dismissAndFinishAlert() {
         stopSoundAndVibe();
-        finish();
+        try {
+            NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            if (nm != null) {
+                nm.cancelAll();
+            }
+        } catch (Exception ignored) {
+        }
+        if (Build.VERSION.SDK_INT >= 21) {
+            finishAndRemoveTask();
+        } else {
+            finish();
+        }
+    }
+
+    public void a(View view) {
+        dismissAndFinishAlert();
     }
 
     public void b(View view) {
@@ -233,7 +249,7 @@ public class smsRes extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        finish();
+        dismissAndFinishAlert();
     }
 
     @Override
@@ -439,6 +455,24 @@ public class smsRes extends AppCompatActivity {
                 this.vibe.vibrate(new long[]{0, 600, 300, 600, 300, 600}, vibRepeat);
             }
         }
+
+        // Auto-dismiss on Shabbat (killS) if enabled
+        if (sp.getBoolean("killS", false)) {
+            try {
+                int seconds = Integer.parseInt(sp.getString("timeK", "6"));
+                if (seconds > 0) {
+                    new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!isFinishing()) {
+                                dismissAndFinishAlert();
+                            }
+                        }
+                    }, seconds * 1000L);
+                }
+            } catch (Exception ignored) {
+            }
+        }
     }
 
     private void calculateDistanceAndEta(final String rawAddress) {
@@ -599,6 +633,23 @@ public class smsRes extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        stopSoundAndVibe();
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        stopSoundAndVibe();
+        super.onStop();
+    }
+
+    @Override
+    public void onBackPressed() {
+        dismissAndFinishAlert();
+    }
+
+    @Override
     public void onDestroy() {
         stopSoundAndVibe();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -608,8 +659,7 @@ public class smsRes extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
         if (menuItem.getItemId() == 16908332) {
-            stopSoundAndVibe();
-            finish();
+            dismissAndFinishAlert();
             return true;
         }
         return super.onOptionsItemSelected(menuItem);
