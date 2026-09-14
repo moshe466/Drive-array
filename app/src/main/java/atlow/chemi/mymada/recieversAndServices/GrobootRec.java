@@ -135,9 +135,13 @@ public class GrobootRec extends BroadcastReceiver {
         smsRes.alerT(l);
         smsRes.newC(orgTitle);
 
+        boolean notEnabled = sp.getBoolean("not", true);
+        boolean rideEnabled = sp.getBoolean("ride", false);
+        int targetNotifId = rideEnabled ? 1001 : NOTIF_ID++;
+
         PendingIntent ourAppPendingIntent = PendingIntent.getActivity(
                 context,
-                NOTIF_ID,
+                targetNotifId,
                 resIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT | (Build.VERSION.SDK_INT >= 23 ? PendingIntent.FLAG_IMMUTABLE : 0)
         );
@@ -150,8 +154,12 @@ public class GrobootRec extends BroadcastReceiver {
                 .setContentIntent(ourAppPendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setCategory(NotificationCompat.CATEGORY_ALARM)
-                .setAutoCancel(true)
-                .setFullScreenIntent(ourAppPendingIntent, true);
+                .setAutoCancel(true);
+
+        boolean winEnabled = sp.getBoolean("win", true);
+        if (winEnabled) {
+            builder.setFullScreenIntent(ourAppPendingIntent, true);
+        }
 
         if (isSoundEnabled && soundUri != null) {
             builder.setSound(soundUri);
@@ -163,14 +171,18 @@ public class GrobootRec extends BroadcastReceiver {
             builder.setVibrate(vibPattern);
         }
 
-        try {
-            NotificationManagerCompat.from(context).notify(NOTIF_ID++, builder.build());
-        } catch (Exception e) {
-            Crashlytics.logException(e);
+        if (notEnabled) {
+            try {
+                if (rideEnabled) {
+                    NotificationManagerCompat.from(context).cancelAll();
+                }
+                NotificationManagerCompat.from(context).notify(targetNotifId, builder.build());
+            } catch (Exception e) {
+                Crashlytics.logException(e);
+            }
         }
 
         // Launch full-screen alert if enabled
-        boolean winEnabled = sp.getBoolean("win", true);
         if (winEnabled) {
             try {
                 context.startActivity(resIntent);

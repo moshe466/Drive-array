@@ -53,15 +53,35 @@ public class NotificationService extends NotificationListenerService {
         }
     }
 
-    private static String sLastNotifKey = "";
+    private static String sLastPackage = "";
+    private static String sLastNormalizedText = "";
     private static long sLastNotifTime = 0;
 
-    private static synchronized boolean isDuplicate(String key) {
+    private static String normalizeText(String text) {
+        if (text == null) return "";
+        return text.replaceAll("[\\s\\r\\n\\t]+", " ").trim();
+    }
+
+    private static synchronized boolean isDuplicateNotification(String pkg, String title, String body) {
         long now = System.currentTimeMillis();
-        if (key != null && key.equals(sLastNotifKey) && (now - sLastNotifTime < 3000)) {
+        String normTitle = normalizeText(title);
+        String normBody = normalizeText(body);
+        String combined = (normTitle + " " + normBody).trim();
+
+        if (combined.isEmpty()) {
             return true;
         }
-        sLastNotifKey = key != null ? key : "";
+
+        // Deduplication window of 8000ms for identical content from same package
+        if (pkg != null && pkg.equals(sLastPackage) && (now - sLastNotifTime < 8000)) {
+            if (combined.equalsIgnoreCase(sLastNormalizedText) || 
+                (!normBody.isEmpty() && normBody.equalsIgnoreCase(sLastNormalizedText))) {
+                return true;
+            }
+        }
+
+        sLastPackage = pkg != null ? pkg : "";
+        sLastNormalizedText = !normBody.isEmpty() ? normBody : combined;
         sLastNotifTime = now;
         return false;
     }
@@ -133,8 +153,7 @@ public class NotificationService extends NotificationListenerService {
             }
 
             // Deduplication check
-            String notifKey = packageName + "|" + (string != null ? string : "") + "|" + (this.a != null ? this.a : "");
-            if (isDuplicate(notifKey)) {
+            if (isDuplicateNotification(packageName, string, this.a)) {
                 return;
             }
 
@@ -226,21 +245,6 @@ public class NotificationService extends NotificationListenerService {
 
             GrobootRec.madasApp(notification.contentIntent);
             localBroadcastManager.sendBroadcast(intent);
-
-            SharedPreferences sp = getSharedPreferences("Settings", 0);
-            if (sp.getBoolean("win", true)) {
-                try {
-                    Intent popupIntent = new Intent(this.b != null ? this.b : this, smsRes.class);
-                    popupIntent.putExtras(intent);
-                    popupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK 
-                            | Intent.FLAG_ACTIVITY_CLEAR_TOP 
-                            | Intent.FLAG_ACTIVITY_SINGLE_TOP 
-                            | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    (this.b != null ? this.b : this).startActivity(popupIntent);
-                } catch (Exception e) {
-                    Crashlytics.logException(e);
-                }
-            }
         }
     }
 
