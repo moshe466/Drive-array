@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:padding="6dp"
+    android:layout_width="match_parent"
+    android:layout_height="110dp">
+    <RelativeLayout
+        android:background="@drawable/button_menu_background"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true">
+        <TextView
+            android:textSize="18dp"
+            android:textColor="#ff303030"
+            android:gravity="center"
+            android:id="@+id/ksv_item_value"
+            android:padding="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:textSize="20dp"
+            android:textColor="#ff303030"
+            android:gravity="center"
+            android:id="@+id/ksv_item_key"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=""/>
+    </RelativeLayout>
+</RelativeLayout>

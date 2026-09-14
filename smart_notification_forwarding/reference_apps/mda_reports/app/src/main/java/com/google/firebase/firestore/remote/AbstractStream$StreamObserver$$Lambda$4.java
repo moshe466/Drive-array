@@ -1,0 +1,24 @@
+package com.google.firebase.firestore.remote;
+
+import com.google.firebase.firestore.remote.AbstractStream;
+import io.grpc.Status;
+
+/* loaded from: classes2.dex */
+final /* synthetic */ class AbstractStream$StreamObserver$$Lambda$4 implements Runnable {
+    private final AbstractStream.StreamObserver arg$1;
+    private final Status arg$2;
+
+    private AbstractStream$StreamObserver$$Lambda$4(AbstractStream.StreamObserver streamObserver, Status status) {
+        this.arg$1 = streamObserver;
+        this.arg$2 = status;
+    }
+
+    public static Runnable lambdaFactory$(AbstractStream.StreamObserver streamObserver, Status status) {
+        return new AbstractStream$StreamObserver$$Lambda$4(streamObserver, status);
+    }
+
+    @Override // java.lang.Runnable
+    public void run() {
+        AbstractStream.StreamObserver.a(this.arg$1, this.arg$2);
+    }
+}

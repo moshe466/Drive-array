@@ -1,0 +1,59 @@
+package io.grpc;
+
+import com.google.common.io.BaseEncoding;
+import io.grpc.Metadata;
+import java.nio.charset.Charset;
+
+@Internal
+/* loaded from: classes2.dex */
+public final class InternalMetadata {
+
+    @Internal
+    public static final Charset US_ASCII = Charset.forName("US-ASCII");
+
+    @Internal
+    public static final BaseEncoding BASE64_ENCODING_OMIT_PADDING = Metadata.a;
+
+    @Internal
+    /* loaded from: classes2.dex */
+    public interface TrustedAsciiMarshaller<T> extends Metadata.TrustedAsciiMarshaller<T> {
+    }
+
+    @Internal
+    public static int headerCount(Metadata metadata) {
+        return metadata.a();
+    }
+
+    @Internal
+    public static <T> Metadata.Key<T> keyOf(String str, TrustedAsciiMarshaller<T> trustedAsciiMarshaller) {
+        boolean z = false;
+        if (str != null && !str.isEmpty() && str.charAt(0) == ':') {
+            z = true;
+        }
+        return Metadata.Key.a(str, z, trustedAsciiMarshaller);
+    }
+
+    @Internal
+    public static <T> Metadata.Key<T> keyOf(String str, Metadata.AsciiMarshaller<T> asciiMarshaller) {
+        boolean z = false;
+        if (str != null && !str.isEmpty() && str.charAt(0) == ':') {
+            z = true;
+        }
+        return Metadata.Key.a(str, z, asciiMarshaller);
+    }
+
+    @Internal
+    public static Metadata newMetadata(int i, byte[]... bArr) {
+        return new Metadata(i, bArr);
+    }
+
+    @Internal
+    public static Metadata newMetadata(byte[]... bArr) {
+        return new Metadata(bArr);
+    }
+
+    @Internal
+    public static byte[][] serialize(Metadata metadata) {
+        return metadata.b();
+    }
+}

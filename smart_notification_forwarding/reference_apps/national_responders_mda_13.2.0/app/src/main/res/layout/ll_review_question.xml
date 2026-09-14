@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:padding="3dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+    <ImageView
+        android:id="@+id/iv_v"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/check_box_none_30"/>
+    <ImageView
+        android:id="@+id/iv_x"
+        android:visibility="visible"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/check_box_x_none_30"/>
+    <TextView
+        android:textSize="14dp"
+        android:textColor="@color/grayDarkDark"
+        android:gravity="center"
+        android:id="@+id/tv_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="asdfdf"
+        android:layout_weight="1"
+        android:layout_marginStart="6dp"/>
+</LinearLayout>

@@ -100,6 +100,7 @@ public class SettingsAdvanced extends Fragment implements View.OnClickListener {
                 switchCompat = this.loop;
                 string = getResources().getString(!z ? R.string.pref_description_loop_off : R.string.pref_description_loop_on);
                 edit.putBoolean("loop", z);
+                edit.putInt("sound_repeat_cycles", z ? 0 : 1);
                 textView = this.loopDesc;
                 break;
             case R.id.newWin_pref /* 2131362332 */:
@@ -269,7 +270,9 @@ public class SettingsAdvanced extends Fragment implements View.OnClickListener {
                     i = R.string.pref_description_loop_on;
                 }
                 str = resources.getString(i);
-                edit.putBoolean("loop", !switchCompat.isChecked());
+                boolean newLoop = !switchCompat.isChecked();
+                edit.putBoolean("loop", newLoop);
+                edit.putInt("sound_repeat_cycles", newLoop ? 0 : 1);
                 textView = this.loopDesc;
                 break;
             case R.id.newWin_pref /* 2131362332 */:
@@ -395,7 +398,7 @@ public class SettingsAdvanced extends Fragment implements View.OnClickListener {
         boolean z = this.sp.getBoolean("not", true);
         boolean z2 = this.sp.getBoolean("win", true);
         boolean z3 = this.sp.getBoolean("ride", false);
-        boolean z4 = this.sp.getBoolean("loop", false);
+        boolean z4 = this.sp.getInt("sound_repeat_cycles", 1) == 0 || this.sp.getBoolean("loop", false);
         boolean z5 = this.sp.getBoolean("killS", false);
         setTrueOrFalse(z, constraintLayout.getId());
         setTrueOrFalse(z2, constraintLayout2.getId());

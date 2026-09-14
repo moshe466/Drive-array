@@ -96,6 +96,49 @@ public class GrobootRec extends BroadcastReceiver {
 
         // Check if sound/alert is enabled for this category
         boolean isSoundEnabled = sp.getBoolean("Nsou" + suffix, true);
+        boolean isVibrate = sp.getBoolean("vibDev" + suffix, true);
+
+        // 1. Day & Night Shift Mode Rules
+        // nightStart (hour, default 23), nightEnd (hour, default 7)
+        // 0 = Sound & Vibrate ("צליל ורטט"), 1 = Vibrate only ("רטט"), 2 = Silent ("שקט")
+        int nightStart = sp.getInt("nightStart", 23);
+        int nightEnd = sp.getInt("nightEnd", 7);
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        int currentHour = cal.get(java.util.Calendar.HOUR_OF_DAY);
+        boolean isNight;
+        if (nightStart > nightEnd) {
+            isNight = (currentHour >= nightStart || currentHour < nightEnd);
+        } else if (nightStart < nightEnd) {
+            isNight = (currentHour >= nightStart && currentHour < nightEnd);
+        } else {
+            isNight = false;
+        }
+
+        int shiftMode = isNight ? sp.getInt("sleepNight", 0) : sp.getInt("sleepDay", 0);
+        if (shiftMode == 1) {
+            isSoundEnabled = false;
+        } else if (shiftMode == 2) {
+            isSoundEnabled = false;
+            isVibrate = false;
+        }
+
+        // 2. Device Status Rules (stat & statVib)
+        AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        if (audioManager != null) {
+            int ringerMode = audioManager.getRingerMode();
+            // stat: "התראה תצפצף רק כאשר המכשיר לא במצב רטט/שקט"
+            if (sp.getBoolean("stat", false)) {
+                if (ringerMode == AudioManager.RINGER_MODE_SILENT || ringerMode == AudioManager.RINGER_MODE_VIBRATE) {
+                    isSoundEnabled = false;
+                }
+            }
+            // statVib: "התראה תרטוט רק כאשר המכשיר לא במצב שקט"
+            if (sp.getBoolean("statVib", false)) {
+                if (ringerMode == AudioManager.RINGER_MODE_SILENT) {
+                    isVibrate = false;
+                }
+            }
+        }
 
         // Determine sound URI
         String soundUriStr = sp.getString("NuRi" + suffix, null);
@@ -173,7 +216,6 @@ public class GrobootRec extends BroadcastReceiver {
         }
 
         long[] vibPattern = {0, 500, 200, 500, 200, 500};
-        boolean isVibrate = sp.getBoolean("vibDev" + suffix, true);
         if (isVibrate) {
             builder.setVibrate(vibPattern);
         }

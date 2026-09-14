@@ -1,0 +1,33 @@
+package io.grpc.internal;
+
+import java.util.HashSet;
+import javax.annotation.concurrent.NotThreadSafe;
+
+@NotThreadSafe
+/* loaded from: classes2.dex */
+public abstract class InUseStateAggregator<T> {
+    private final HashSet<T> inUseObjects = new HashSet<>();
+
+    protected abstract void a();
+
+    protected abstract void b();
+
+    public final boolean isInUse() {
+        return !this.inUseObjects.isEmpty();
+    }
+
+    public final void updateObjectInUse(T t, boolean z) {
+        int size = this.inUseObjects.size();
+        if (z) {
+            this.inUseObjects.add(t);
+            if (size == 0) {
+                a();
+                return;
+            }
+            return;
+        }
+        if (this.inUseObjects.remove(t) && size == 1) {
+            b();
+        }
+    }
+}

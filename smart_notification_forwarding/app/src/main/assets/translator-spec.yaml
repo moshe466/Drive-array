@@ -1,0 +1,173 @@
+version: 1.0.37
+directions:
+    -   srcLang: en
+        tgtLang: ar
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: bg
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: bn
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: cs
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: da
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: de
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: es
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: esmx
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: esus
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: fa
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: fi
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: fr
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: frca
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: gu
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: he
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: hi
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: hr
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: hu
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: id
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: it
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: ja
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: ko
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: mr
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: nl
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: no
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: pl
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: pt
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: ptbr
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: ro
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: ru
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: sr
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: sv
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: ta
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: te
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: th
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: tr
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: vi
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: zh
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: zhhk
+        biDirection: True
+
+    -   srcLang: en
+        tgtLang: zhtw
+        biDirection: True
+
+    -   srcLang: ko
+        tgtLang: ja
+        biDirection: True
+
+    -   srcLang: ko
+        tgtLang: vi
+        biDirection: True
+
+    -   srcLang: ko
+        tgtLang: zh
+        biDirection: True

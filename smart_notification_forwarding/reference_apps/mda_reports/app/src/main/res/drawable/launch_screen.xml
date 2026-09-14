@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:opacity="opaque">
+    <item android:drawable="@drawable/bg_radial"/>
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/ic_launcher"/>
+    </item>
+    <item
+        android:gravity="bottom"
+        android:bottom="90dp">
+        <bitmap
+            android:gravity="center_horizontal"
+            android:src="@drawable/unnamed"/>
+    </item>
+</layer-list>

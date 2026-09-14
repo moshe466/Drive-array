@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="@color/red_buttons"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="שאלון סרולוגיה"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_margin="2dp"
+            style="@style/TextInputLayout">
+            <com.groboot.mdaemergency.ui.views.DateField
+                android:id="@+id/dt_date"
+                android:hint="תאריך התסמין הראשון"
+                app:defaultNow="false"
+                style="@style/EditText"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.groboot.mdaemergency.ui.QuestionView
+            android:id="@+id/cbSymptomsSince022020"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="תסמינים מאז 02/2020"
+            style="@style/QuestionView"/>
+        <com.groboot.mdaemergency.ui.QuestionView
+            android:id="@+id/cbFeverOver38"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="חום מעל 38 מעלות"
+            style="@style/QuestionView"/>
+        <com.groboot.mdaemergency.ui.QuestionView
+            android:id="@+id/cbCough"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="שיעול"
+            style="@style/QuestionView"/>
+        <com.groboot.mdaemergency.ui.QuestionView
+            android:id="@+id/cbBreathingDifficulties"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="קשיי נשימה"
+            style="@style/QuestionView"/>
+        <com.groboot.mdaemergency.ui.QuestionView
+            android:id="@+id/cbTiredness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="עייפות או חולשה"
+            style="@style/QuestionView"/>
+        <com.groboot.mdaemergency.ui.QuestionView
+            android:id="@+id/cbShivering"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="צמרמורת או רעד"
+            style="@style/QuestionView"/>
+        <com.groboot.mdaemergency.ui.QuestionView
+            android:id="@+id/cbSoreThroat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="כאבי גרון"
+            style="@style/QuestionView"/>
+        <com.groboot.mdaemergency.ui.QuestionView
+            android:id="@+id/cbMusclePain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="כאבי שרירים"
+            style="@style/QuestionView"/>
+        <com.groboot.mdaemergency.ui.QuestionView
+            android:id="@+id/cbSnot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="נזלת"
+            style="@style/QuestionView"/>
+        <com.groboot.mdaemergency.ui.QuestionView
+            android:id="@+id/cbLossOfTaste"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="אובדן טעם או ריח"
+            style="@style/QuestionView"/>
+        <com.groboot.mdaemergency.ui.QuestionView
+            android:id="@+id/cbDiarrhea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="שלשול"
+            style="@style/QuestionView"/>
+        <com.groboot.mdaemergency.ui.QuestionView
+            android:id="@+id/cbAbdominalPain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="כאבי בטן"
+            style="@style/QuestionView"/>
+        <com.groboot.mdaemergency.ui.QuestionView
+            android:id="@+id/cbOtherSymptoms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:text="תסמינים אחרים"
+            style="@style/QuestionView"/>
+        <Button
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="שלח"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </LinearLayout>
+</ScrollView>

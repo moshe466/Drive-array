@@ -434,7 +434,7 @@ public class SettingsNotificationsSounds extends Fragment implements View.OnClic
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 int chosenCycles = cycleValues[which];
-                sp.edit().putInt("sound_repeat_cycles", chosenCycles).apply();
+                sp.edit().putInt("sound_repeat_cycles", chosenCycles).putBoolean("loop", chosenCycles == 0).apply();
                 if (tvValue != null) {
                     tvValue.setText(options[which]);
                 }

@@ -1,0 +1,146 @@
+package io.opencensus.trace;
+
+import io.opencensus.common.Timestamp;
+import io.opencensus.trace.NetworkEvent;
+import javax.annotation.Nullable;
+import javax.annotation.concurrent.Immutable;
+
+@Deprecated
+@Immutable
+/* loaded from: classes2.dex */
+final class AutoValue_NetworkEvent extends NetworkEvent {
+    private final long compressedMessageSize;
+    private final Timestamp kernelTimestamp;
+    private final long messageId;
+    private final NetworkEvent.Type type;
+    private final long uncompressedMessageSize;
+
+    /* loaded from: classes2.dex */
+    static final class Builder extends NetworkEvent.Builder {
+        private Long compressedMessageSize;
+        private Timestamp kernelTimestamp;
+        private Long messageId;
+        private NetworkEvent.Type type;
+        private Long uncompressedMessageSize;
+
+        @Override // io.opencensus.trace.NetworkEvent.Builder
+        NetworkEvent.Builder a(long j) {
+            this.messageId = Long.valueOf(j);
+            return this;
+        }
+
+        /* JADX INFO: Access modifiers changed from: package-private */
+        public NetworkEvent.Builder a(NetworkEvent.Type type) {
+            if (type == null) {
+                throw new NullPointerException("Null type");
+            }
+            this.type = type;
+            return this;
+        }
+
+        @Override // io.opencensus.trace.NetworkEvent.Builder
+        public NetworkEvent build() {
+            String str = "";
+            if (this.type == null) {
+                str = " type";
+            }
+            if (this.messageId == null) {
+                str = str + " messageId";
+            }
+            if (this.uncompressedMessageSize == null) {
+                str = str + " uncompressedMessageSize";
+            }
+            if (this.compressedMessageSize == null) {
+                str = str + " compressedMessageSize";
+            }
+            if (str.isEmpty()) {
+                return new AutoValue_NetworkEvent(this.kernelTimestamp, this.type, this.messageId.longValue(), this.uncompressedMessageSize.longValue(), this.compressedMessageSize.longValue());
+            }
+            throw new IllegalStateException("Missing required properties:" + str);
+        }
+
+        @Override // io.opencensus.trace.NetworkEvent.Builder
+        public NetworkEvent.Builder setCompressedMessageSize(long j) {
+            this.compressedMessageSize = Long.valueOf(j);
+            return this;
+        }
+
+        @Override // io.opencensus.trace.NetworkEvent.Builder
+        public NetworkEvent.Builder setKernelTimestamp(@Nullable Timestamp timestamp) {
+            this.kernelTimestamp = timestamp;
+            return this;
+        }
+
+        @Override // io.opencensus.trace.NetworkEvent.Builder
+        public NetworkEvent.Builder setUncompressedMessageSize(long j) {
+            this.uncompressedMessageSize = Long.valueOf(j);
+            return this;
+        }
+    }
+
+    private AutoValue_NetworkEvent(@Nullable Timestamp timestamp, NetworkEvent.Type type, long j, long j2, long j3) {
+        this.kernelTimestamp = timestamp;
+        this.type = type;
+        this.messageId = j;
+        this.uncompressedMessageSize = j2;
+        this.compressedMessageSize = j3;
+    }
+
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof NetworkEvent)) {
+            return false;
+        }
+        NetworkEvent networkEvent = (NetworkEvent) obj;
+        Timestamp timestamp = this.kernelTimestamp;
+        if (timestamp != null ? timestamp.equals(networkEvent.getKernelTimestamp()) : networkEvent.getKernelTimestamp() == null) {
+            if (this.type.equals(networkEvent.getType()) && this.messageId == networkEvent.getMessageId() && this.uncompressedMessageSize == networkEvent.getUncompressedMessageSize() && this.compressedMessageSize == networkEvent.getCompressedMessageSize()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override // io.opencensus.trace.NetworkEvent
+    public long getCompressedMessageSize() {
+        return this.compressedMessageSize;
+    }
+
+    @Override // io.opencensus.trace.NetworkEvent
+    @Nullable
+    public Timestamp getKernelTimestamp() {
+        return this.kernelTimestamp;
+    }
+
+    @Override // io.opencensus.trace.NetworkEvent
+    public long getMessageId() {
+        return this.messageId;
+    }
+
+    @Override // io.opencensus.trace.NetworkEvent
+    public NetworkEvent.Type getType() {
+        return this.type;
+    }
+
+    @Override // io.opencensus.trace.NetworkEvent
+    public long getUncompressedMessageSize() {
+        return this.uncompressedMessageSize;
+    }
+
+    public int hashCode() {
+        Timestamp timestamp = this.kernelTimestamp;
+        long hashCode = ((((timestamp == null ? 0 : timestamp.hashCode()) ^ 1000003) * 1000003) ^ this.type.hashCode()) * 1000003;
+        long j = this.messageId;
+        long j2 = ((int) (hashCode ^ (j ^ (j >>> 32)))) * 1000003;
+        long j3 = this.uncompressedMessageSize;
+        long j4 = ((int) (j2 ^ (j3 ^ (j3 >>> 32)))) * 1000003;
+        long j5 = this.compressedMessageSize;
+        return (int) (j4 ^ (j5 ^ (j5 >>> 32)));
+    }
+
+    public String toString() {
+        return "NetworkEvent{kernelTimestamp=" + this.kernelTimestamp + ", type=" + this.type + ", messageId=" + this.messageId + ", uncompressedMessageSize=" + this.uncompressedMessageSize + ", compressedMessageSize=" + this.compressedMessageSize + "}";
+    }
+}

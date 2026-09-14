@@ -1,0 +1,152 @@
+languages:
+    -   srcLang: en
+        tgtLang: ar
+        supportsTaggedFrom: 0.22.0
+
+    -   srcLang: en
+        tgtLang: bg
+        supportsTaggedFrom: 0.11.0
+
+    -   srcLang: en
+        tgtLang: bn
+        supportsTaggedFrom: 0.3.0
+
+    -   srcLang: en
+        tgtLang: cs
+        supportsTaggedFrom: 0.13.0
+
+    -   srcLang: en
+        tgtLang: da
+        supportsTaggedFrom: 0.2.0
+
+    -   srcLang: en
+        tgtLang: de
+        supportsTaggedFrom: 0.27.0
+
+    -   srcLang: en
+        tgtLang: es
+        supportsTaggedFrom: 0.31.0
+
+    -   srcLang: en
+        tgtLang: fa
+        supportsTaggedFrom: 0.10.0
+
+    -   srcLang: en
+        tgtLang: fi
+        supportsTaggedFrom: 0.2.0
+
+    -   srcLang: en
+        tgtLang: fr
+        supportsTaggedFrom: 0.24.0
+
+    -   srcLang: en
+        tgtLang: frca
+        supportsTaggedFrom: 0.24.0
+
+    -   srcLang: en
+        tgtLang: gu
+        supportsTaggedFrom: 0.3.0
+
+    -   srcLang: en
+        tgtLang: he
+        supportsTaggedFrom: 0.10.0
+
+    -   srcLang: en
+        tgtLang: hi
+        supportsTaggedFrom: 0.19.0
+
+    -   srcLang: en
+        tgtLang: hr
+        supportsTaggedFrom: 0.2.0
+
+    -   srcLang: en
+        tgtLang: hu
+        supportsTaggedFrom: 0.2.0
+
+    -   srcLang: en
+        tgtLang: id
+        supportsTaggedFrom: 0.2.0
+
+    -   srcLang: en
+        tgtLang: it
+        supportsTaggedFrom: 0.27.0
+
+    -   srcLang: en
+        tgtLang: ja
+        supportsTaggedFrom: 0.20.0
+
+    -   srcLang: en
+        tgtLang: ko
+        supportsTaggedFrom: 0.13.0
+
+    -   srcLang: en
+        tgtLang: mr
+        supportsTaggedFrom: 0.3.0
+
+    -   srcLang: en
+        tgtLang: nl
+        supportsTaggedFrom: 0.12.0
+
+    -   srcLang: en
+        tgtLang: no
+        supportsTaggedFrom: 0.2.0
+
+    -   srcLang: en
+        tgtLang: pl
+        supportsTaggedFrom: 0.25.0
+
+    -   srcLang: en
+        tgtLang: pt
+        supportsTaggedFrom: 0.13.0
+
+    -   srcLang: en
+        tgtLang: ptbr
+        supportsTaggedFrom: 0.12.0
+
+    -   srcLang: en
+        tgtLang: ro
+        supportsTaggedFrom: 0.2.0
+
+    -   srcLang: en
+        tgtLang: ru
+        supportsTaggedFrom: 0.14.0
+
+    -   srcLang: en
+        tgtLang: sr
+        supportsTaggedFrom: 0.2.0
+
+    -   srcLang: en
+        tgtLang: sv
+        supportsTaggedFrom: 0.2.0
+
+    -   srcLang: en
+        tgtLang: ta
+        supportsTaggedFrom: 0.3.0
+
+    -   srcLang: en
+        tgtLang: te
+        supportsTaggedFrom: 0.3.0
+
+    -   srcLang: en
+        tgtLang: tr
+        supportsTaggedFrom: 0.2.0
+
+    -   srcLang: en
+        tgtLang: vi
+        supportsTaggedFrom: 0.17.0
+
+    -   srcLang: en
+        tgtLang: zh
+        supportsTaggedFrom: 0.31.0
+
+    -   srcLang: ko
+        tgtLang: ja
+        supportsTaggedFrom: 0.20.0
+
+    -   srcLang: ko
+        tgtLang: vi
+        supportsTaggedFrom: 0.17.0
+
+    -   srcLang: ko
+        tgtLang: zh
+        supportsTaggedFrom: 0.31.0

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:padding="4dp"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+    <LinearLayout
+        android:background="#ffefefef"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:textSize="18dp"
+            android:textColor="#ff464646"
+            android:gravity="right"
+            android:id="@+id/txtDescription"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="גני יהושעfdsfsdfsdfsdfsdfsdfsfsfsdfsfsdfdsffdsfdsfdfdsfdsf"
+            android:lines="2"
+            android:layout_weight="1"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeMaxTextSize="18dp"/>
+        <RelativeLayout
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/blue_oval"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="@+id/rl_content"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:id="@+id/txtCount"
+                android:padding="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="136"
+                android:lines="1"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeMaxTextSize="18dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

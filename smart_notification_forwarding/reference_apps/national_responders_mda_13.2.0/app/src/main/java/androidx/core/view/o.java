@@ -1,0 +1,8 @@
+package androidx.core.view;
+
+/* loaded from: classes.dex */
+public interface o {
+    boolean isNestedScrollingEnabled();
+
+    void stopNestedScroll();
+}

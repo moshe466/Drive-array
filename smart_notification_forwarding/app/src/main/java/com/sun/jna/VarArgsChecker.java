@@ -1,0 +1,66 @@
+package com.sun.jna;
+
+import java.lang.reflect.Method;
+
+/* loaded from: classes.dex */
+abstract class VarArgsChecker {
+    /* JADX INFO: Access modifiers changed from: package-private */
+    public abstract int fixedArgs(Method method);
+
+    /* JADX INFO: Access modifiers changed from: package-private */
+    public abstract boolean isVarArgs(Method method);
+
+    private VarArgsChecker() {
+    }
+
+    /* loaded from: classes.dex */
+    private static final class RealVarArgsChecker extends VarArgsChecker {
+        private RealVarArgsChecker() {
+            super();
+        }
+
+        @Override // com.sun.jna.VarArgsChecker
+        boolean isVarArgs(Method method) {
+            return method.isVarArgs();
+        }
+
+        @Override // com.sun.jna.VarArgsChecker
+        int fixedArgs(Method method) {
+            if (method.isVarArgs()) {
+                return method.getParameterTypes().length - 1;
+            }
+            return 0;
+        }
+    }
+
+    /* loaded from: classes.dex */
+    private static final class NoVarArgsChecker extends VarArgsChecker {
+        @Override // com.sun.jna.VarArgsChecker
+        int fixedArgs(Method method) {
+            return 0;
+        }
+
+        @Override // com.sun.jna.VarArgsChecker
+        boolean isVarArgs(Method method) {
+            return false;
+        }
+
+        private NoVarArgsChecker() {
+            super();
+        }
+    }
+
+    /* JADX INFO: Access modifiers changed from: package-private */
+    public static VarArgsChecker create() {
+        try {
+            if (Method.class.getMethod("isVarArgs", new Class[0]) != null) {
+                return new RealVarArgsChecker();
+            }
+            return new NoVarArgsChecker();
+        } catch (NoSuchMethodException unused) {
+            return new NoVarArgsChecker();
+        } catch (SecurityException unused2) {
+            return new NoVarArgsChecker();
+        }
+    }
+}

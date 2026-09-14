@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="abc_config_activityDefaultDur">220</integer>
+    <integer name="abc_config_activityShortDur">150</integer>
+    <integer name="cancel_button_image_alpha">127</integer>
+    <integer name="config_tooltipAnimTime">150</integer>
+    <integer name="floating_window_body_text_size_px">42</integer>
+    <integer name="floating_window_close_text_size_px">32</integer>
+    <integer name="floating_window_close_weight">8</integer>
+    <integer name="floating_window_header_height_dp">48</integer>
+    <integer name="floating_window_padding_px">16</integer>
+    <integer name="floating_window_title_text_size_px">44</integer>
+    <integer name="floating_window_title_weight">1</integer>
+    <integer name="google_play_services_version">12451000</integer>
+    <integer name="preferences_detail_pane_weight">1</integer>
+    <integer name="preferences_header_pane_weight">0</integer>
+    <integer name="status_bar_notification_info_maxnum">999</integer>
+</resources>

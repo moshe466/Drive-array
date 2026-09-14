@@ -260,7 +260,7 @@
     <string name="pref_description_ringtone_off">صوت التنبيه للحالات معطل.</string>
     <string name="pref_description_ringtone_on">صوت التنبيه للحالات مفعّل.</string>
     <string name="pref_description_shabat_off">النافذة المنبثقة تبقى مفتوحة حتى تأكيد الاستلام</string>
-    <string name="pref_description_shabat_on">النافذة المنبثقة تغلق تلقائياً بعد الوقت المحدد</string>
+    <string name="pref_description_shabat_on">النافذة المنبثقة تغلق تلقائياً بعد الوقت المحدد (وضع السبت)</string>
     <string name="pref_description_sleep_off">فصل نمط التنبيه حسب الوقت (الليل من 23:00 حتى 7:00).</string>
     <string name="pref_description_sleep_on">لن يتم تشغيل تنبيهات صوتية من 23:00 حتى 7:00.</string>
     <string name="pref_description_stateVib_off">الاهتزاز يعمل حتى في الوضع الصامت.</string>
@@ -304,8 +304,8 @@
     <string name="pref_title_region">اختيار المنطقة الافتراضية</string>
     <string name="pref_title_ride">استبدال التنبيهات السابقة</string>
     <string name="pref_title_ringtone">الصوت</string>
-    <string name="pref_title_shabat">إغلاق تلقائي</string>
-    <string name="pref_title_shabatT">المدة حتى إغلاق التنبيه (بالثواني)</string>
+    <string name="pref_title_shabat">إغلاق تلقائي (وضع السبت)</string>
+    <string name="pref_title_shabatT">المدة حتى إغلاق التنبيه (وضع السبت) بالثواني</string>
     <string name="pref_title_sleep">وضع النهار والليل</string>
     <string name="pref_title_state">التنبيه حسب حالة الجهاز</string>
     <string name="pref_title_stateVib">الاهتزاز حسب حالة الجهاز</string>

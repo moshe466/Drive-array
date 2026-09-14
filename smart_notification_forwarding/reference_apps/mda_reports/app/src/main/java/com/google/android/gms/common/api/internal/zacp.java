@@ -1,0 +1,79 @@
+package com.google.android.gms.common.api.internal;
+
+import android.os.IBinder;
+import android.os.RemoteException;
+import com.google.android.gms.common.api.Api;
+import com.google.android.gms.common.api.Result;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.BaseImplementation;
+import com.google.android.gms.common.util.VisibleForTesting;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
+import java.util.WeakHashMap;
+
+/* loaded from: classes.dex */
+public final class zacp {
+    public static final Status zakx = new Status(8, "The connection to Google Play services was lost");
+    private static final BasePendingResult<?>[] zaky = new BasePendingResult[0];
+    private final Map<Api.AnyClientKey<?>, Api.Client> zagz;
+
+    @VisibleForTesting
+    final Set<BasePendingResult<?>> a = Collections.synchronizedSet(Collections.newSetFromMap(new WeakHashMap()));
+    private final zacs zala = new zacq(this);
+
+    public zacp(Map<Api.AnyClientKey<?>, Api.Client> map) {
+        this.zagz = map;
+    }
+
+    /* JADX INFO: Access modifiers changed from: package-private */
+    public final void a(BasePendingResult<? extends Result> basePendingResult) {
+        this.a.add(basePendingResult);
+        basePendingResult.zaa(this.zala);
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public final void release() {
+        int i;
+        BasePendingResult[] basePendingResultArr = (BasePendingResult[]) this.a.toArray(zaky);
+        int length = basePendingResultArr.length;
+        while (i < length) {
+            BasePendingResult basePendingResult = basePendingResultArr[i];
+            com.google.android.gms.common.api.zac zacVar = null;
+            Object[] objArr = 0;
+            Object[] objArr2 = 0;
+            Object[] objArr3 = 0;
+            Object[] objArr4 = 0;
+            basePendingResult.zaa((zacs) null);
+            if (basePendingResult.zam() == null) {
+                i = basePendingResult.zat() ? 0 : i + 1;
+            } else {
+                basePendingResult.setResultCallback(null);
+                IBinder serviceBrokerBinder = this.zagz.get(((BaseImplementation.ApiMethodImpl) basePendingResult).getClientKey()).getServiceBrokerBinder();
+                if (basePendingResult.isReady()) {
+                    basePendingResult.zaa(new zacr(basePendingResult, objArr4 == true ? 1 : 0, serviceBrokerBinder, objArr3 == true ? 1 : 0));
+                } else {
+                    if (serviceBrokerBinder == null || !serviceBrokerBinder.isBinderAlive()) {
+                        basePendingResult.zaa((zacs) null);
+                    } else {
+                        zacr zacrVar = new zacr(basePendingResult, objArr2 == true ? 1 : 0, serviceBrokerBinder, objArr == true ? 1 : 0);
+                        basePendingResult.zaa(zacrVar);
+                        try {
+                            serviceBrokerBinder.linkToDeath(zacrVar, 0);
+                        } catch (RemoteException unused) {
+                        }
+                    }
+                    basePendingResult.cancel();
+                    zacVar.remove(basePendingResult.zam().intValue());
+                }
+            }
+            this.a.remove(basePendingResult);
+        }
+    }
+
+    public final void zabx() {
+        for (BasePendingResult basePendingResult : (BasePendingResult[]) this.a.toArray(zaky)) {
+            basePendingResult.zab(zakx);
+        }
+    }
+}

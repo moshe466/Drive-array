@@ -371,7 +371,7 @@
     <string name="pref_description_ringtone_off">צליל בעת קבלת מקרים כבוי.</string>
     <string name="pref_description_ringtone_on">צליל בעת קבלת מקרים פועל.</string>
     <string name="pref_description_shabat_off">התראה תיסגר רק לאחר אישור קבלה</string>
-    <string name="pref_description_shabat_on">התראה תיסגר בעצמה לאחר פרק הזמן שיוגדר</string>
+    <string name="pref_description_shabat_on">התראה תיסגר בעצמה לאחר פרק הזמן שיוגדר (מצב שבת)</string>
     <string name="pref_description_sleep_off">פיצול סגנון התראה בהתאם לשעה (לילה מ23:00 עד 7:00).\\\\nשימו לב!\\\\nהגדרה זו לא מפעילה צליל ורטט, אלא מאפשרת אותם אם הם פעילים.</string>
     <string name="pref_description_sleep_on">החל מ23:00 ועד 7:00 לא יושמעו התראות על מקרים.\\n</string>
     <string name="pref_description_stateVib_off">התראה תרטוט גם כשהמכשיר במצב שקט.</string>
@@ -415,8 +415,8 @@
     <string name="pref_title_region">בחירת מרחב ברירת מחדל</string>
     <string name="pref_title_ride">דרוס התראות קודמות</string>
     <string name="pref_title_ringtone">צליל</string>
-    <string name="pref_title_shabat">כיבוי עצמי</string>
-    <string name="pref_title_shabatT">פרק הזמן עד סגירת התראה (בשניות)</string>
+    <string name="pref_title_shabat">כיבוי עצמי (מצב שבת)</string>
+    <string name="pref_title_shabatT">זמן כיבוי עצמי (מצב שבת) בשניות</string>
     <string name="pref_title_sleep">מצב יום-לילה</string>
     <string name="pref_title_state">התראה לפי סטטוס מכשיר</string>
     <string name="pref_title_stateVib">רטט לפי סטטוס מכשיר</string>

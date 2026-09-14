@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true">
+        <layer-list>
+            <item android:drawable="@drawable/input_enabled_bg"/>
+            <item
+                android:gravity="start|center_vertical"
+                android:height="24dp"
+                android:width="24dp"
+                android:drawable="@drawable/ic_round_arrow_drop_down_circle_24"
+                android:start="4dp"/>
+        </layer-list>
+    </item>
+    <item android:state_enabled="false">
+        <layer-list>
+            <item android:drawable="@drawable/input_disabled_bg"/>
+            <item
+                android:gravity="start|center_vertical"
+                android:height="24dp"
+                android:width="24dp"
+                android:drawable="@drawable/ic_round_arrow_drop_down_circle_24"
+                android:start="4dp"/>
+        </layer-list>
+    </item>
+</selector>

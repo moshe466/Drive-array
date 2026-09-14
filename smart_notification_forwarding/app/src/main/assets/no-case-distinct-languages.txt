@@ -1,0 +1,12 @@
+ar
+fa
+he
+hi
+ja
+ko
+ta
+th
+vi
+zh
+zhhk
+zhtw

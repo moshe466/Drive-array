@@ -260,7 +260,7 @@
     <string name="pref_description_ringtone_off">Incident sound alert is off.</string>
     <string name="pref_description_ringtone_on">Incident sound alert is on.</string>
     <string name="pref_description_shabat_off">Popup stays open until acknowledged</string>
-    <string name="pref_description_shabat_on">Popup closes automatically after timeout</string>
+    <string name="pref_description_shabat_on">Popup closes automatically after timeout (Sabbath Mode)</string>
     <string name="pref_description_sleep_off">Split alert style by time (night 23:00 to 07:00).</string>
     <string name="pref_description_sleep_on">No audio alerts between 23:00 and 07:00.</string>
     <string name="pref_description_stateVib_off">Vibrate even in silent mode.</string>
@@ -304,8 +304,8 @@
     <string name="pref_title_region">Default Region Selection</string>
     <string name="pref_title_ride">Overwrite Previous Alerts</string>
     <string name="pref_title_ringtone">Sound</string>
-    <string name="pref_title_shabat">Auto Dismiss</string>
-    <string name="pref_title_shabatT">Timeout before dismiss (seconds)</string>
+    <string name="pref_title_shabat">Auto Dismiss (Sabbath Mode)</string>
+    <string name="pref_title_shabatT">Auto Dismiss Timeout (Sabbath Mode) in seconds</string>
     <string name="pref_title_sleep">Day-Night Mode</string>
     <string name="pref_title_state">Alert by Device Status</string>
     <string name="pref_title_stateVib">Vibrate by Device Status</string>

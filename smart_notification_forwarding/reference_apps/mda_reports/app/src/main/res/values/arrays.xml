@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="Actis">
+        <item>גפיים רפויות</item>
+        <item>תנועות קלות</item>
+        <item>תנועות נמרצות</item>
+    </array>
+    <array name="Appes">
+        <item>כחול - חיוור</item>
+        <item>ורוד - גפיים כחולים</item>
+        <item>ורוד</item>
+    </array>
+    <array name="Grims">
+        <item>אין תגובה</item>
+        <item>העוויות</item>
+        <item>בכי / שיעול</item>
+    </array>
+    <array name="Pulss">
+        <item>אין דופק</item>
+        <item>פחות מ100</item>
+        <item>מעל 100</item>
+    </array>
+    <array name="Resps">
+        <item>אין נשימה</item>
+        <item>נשימה חלשה / איטית</item>
+        <item>בכי חזק</item>
+    </array>
+    <array name="ampm">
+        <item>צליל ורטט</item>
+        <item>רטט</item>
+        <item>שקט</item>
+    </array>
+    <array name="ampm_entry">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </array>
+    <array name="eyes">
+        <item>אין</item>
+        <item>פתיחת עיניים בכאב</item>
+        <item>ציות להוראה</item>
+        <item>ספונטנית</item>
+    </array>
+    <array name="goodVitals">
+        <item>מבוגר</item>
+        <item>ילד</item>
+        <item>תינוק</item>
+    </array>
+    <array name="languages">
+        <item>English</item>
+        <item>עברית</item>
+    </array>
+    <array name="languages_entry">
+        <item>en</item>
+        <item>iw</item>
+    </array>
+    <array name="moto">
+        <item>אין תנועה</item>
+        <item>יישור גפיים בכאב</item>
+        <item>כיפוף גפיים בכאב</item>
+        <item>רתיעה מכאב</item>
+        <item>תגובה לפי מיקום הכאב</item>
+        <item>ציות לפקודות</item>
+    </array>
+    <array name="oxySizes">
+        <item>בלון קטן</item>
+        <item>בלון גדול</item>
+    </array>
+    <array name="region">
+        <item>ירושלים</item>
+        <item>איילון</item>
+        <item>אשר</item>
+        <item>גלבוע</item>
+        <item>דן</item>
+        <item>ירדן</item>
+        <item>ירקון</item>
+        <item>כרמל</item>
+        <item>לכיש</item>
+        <item>נגב</item>
+        <item>שרון</item>
+        <item>מוקד 4</item>
+    </array>
+    <array name="region_entry">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+    </array>
+    <array name="sleep">
+        <item>יום - צליל ורטט. לילה - צליל ורטט.</item>
+        <item>יום - צליל ורטט. לילה - רטט.</item>
+        <item>יום - צליל ורטט. לילה - שקט.</item>
+        <item>יום - רטט. לילה - צליל ורטט.</item>
+        <item>יום - שקט. לילה - צליל ורטט.</item>
+    </array>
+    <array name="sleep_entry">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </array>
+    <array name="verb">
+        <item>אין דיבור</item>
+        <item>השמעת קולות</item>
+        <item>מילים ללא הקשר</item>
+        <item>בילבול, חוסר התמצאות</item>
+        <item>מתמצא ומדבר לעניין</item>
+    </array>
+</resources>

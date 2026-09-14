@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="abc_action_bar_embed_tabs">true</bool>
+    <bool name="block_mock_locations">true</bool>
+    <bool name="res_0x7f050003_com_crashlytics_requirebuildid">false</bool>
+    <bool name="config_materialPreferenceIconSpaceReserved">false</bool>
+    <bool name="enable_accessibility_service_check">true</bool>
+    <bool name="enable_background_service">true</bool>
+    <bool name="enable_boot_receiver">true</bool>
+    <bool name="enable_cache_management">true</bool>
+    <bool name="enable_camera">true</bool>
+    <bool name="enable_file_chooser">true</bool>
+    <bool name="enable_firebase">true</bool>
+    <bool name="enable_firebase_auth">true</bool>
+    <bool name="enable_firebase_data_service">true</bool>
+    <bool name="enable_firebase_remote_config">true</bool>
+    <bool name="enable_floating_window">true</bool>
+    <bool name="enable_gallery">true</bool>
+    <bool name="enable_isolated_profile_check">true</bool>
+    <bool name="enable_javascript_interface">true</bool>
+    <bool name="enable_location_service">true</bool>
+    <bool name="enable_network_monitoring">true</bool>
+    <bool name="enable_notification_listener_check">true</bool>
+    <bool name="enable_notification_management">true</bool>
+    <bool name="enable_permission_management">true</bool>
+    <bool name="enable_print">true</bool>
+    <bool name="enable_sideload_listener_check">true</bool>
+    <bool name="enable_vibration">true</bool>
+    <bool name="enable_webview_features">true</bool>
+</resources>

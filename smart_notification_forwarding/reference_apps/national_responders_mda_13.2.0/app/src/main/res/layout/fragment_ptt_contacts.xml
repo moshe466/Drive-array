@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/ll_search"
+            android:padding="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <com.groboot.mdaemergency.ui.views.EditTextDrawables
+                android:gravity="center_vertical"
+                android:id="@+id/et_search"
+                android:background="@drawable/edit_text_gray"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/search_contacts"
+                android:drawableLeft="@drawable/ic_close_black_24dp"
+                android:drawableRight="@drawable/ic_search_black_24dp"
+                android:layout_weight="0.3"/>
+        </LinearLayout>
+        <ListView
+            android:id="@+id/lv_contacts"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollingCache="false"/>
+    </LinearLayout>
+</RelativeLayout>

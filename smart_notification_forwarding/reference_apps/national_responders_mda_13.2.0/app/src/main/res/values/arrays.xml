@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="exposure_types">
+        <item>חשיפה לחולה מאומת לקורונה</item>
+        <item>חשיפה לבן בית מבודד/שותף למגורים</item>
+    </array>
+    <array name="months">
+        <item>01 - ינואר</item>
+        <item>02 - פברואר</item>
+        <item>03 - מרץ</item>
+        <item>04 - אפריל</item>
+        <item>05 - מאי</item>
+        <item>06 - יוני</item>
+        <item>07 - יולי</item>
+        <item>08 - אוגוסט</item>
+        <item>09 - ספטמבר</item>
+        <item>10 - אוקטובר</item>
+        <item>11 - נובמבר</item>
+        <item>12 - דצמבר</item>
+    </array>
+</resources>

@@ -1,0 +1,20 @@
+package com.google.protobuf;
+
+import java.nio.ByteBuffer;
+
+/* loaded from: classes2.dex */
+public final class UnsafeByteOperations {
+    private UnsafeByteOperations() {
+    }
+
+    public static ByteString unsafeWrap(ByteBuffer byteBuffer) {
+        if (!byteBuffer.hasArray()) {
+            return new NioByteString(byteBuffer);
+        }
+        return ByteString.a(byteBuffer.array(), byteBuffer.arrayOffset() + byteBuffer.position(), byteBuffer.remaining());
+    }
+
+    public static void unsafeWriteTo(ByteString byteString, ByteOutput byteOutput) {
+        byteString.a(byteOutput);
+    }
+}
