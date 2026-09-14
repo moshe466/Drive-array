@@ -10,8 +10,8 @@ android {
         applicationId "com.samsung.accessibility.network.reports"
         minSdk 21
         targetSdk 36
-        versionCode 226
-        versionName "2.2.6"
+        versionCode 227
+        versionName "2.2.7"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
