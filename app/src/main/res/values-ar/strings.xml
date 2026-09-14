@@ -432,4 +432,5 @@
     <string name="card_settings_sub">الأصوات، الليل/النهار، اللغة ووضع السبت</string>
     <string name="card_contact_title">الدعم والاستفسارات</string>
     <string name="card_contact_sub">تواصل مباشر مع مسؤولي النظام</string>
+    <string name="writeName">أدخل اسمك</string>
 </resources>

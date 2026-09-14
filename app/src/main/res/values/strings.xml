@@ -544,4 +544,5 @@
     <string name="card_settings_sub">צלילים, יום/לילה, שפה ושבת</string>
     <string name="card_contact_title">תמיכה ופניות</string>
     <string name="card_contact_sub">יצירת קשר ישירה עם מנהלי המערכת</string>
+    <string name="writeName">הזן את שמך</string>
 </resources>

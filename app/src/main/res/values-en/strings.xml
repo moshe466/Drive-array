@@ -432,4 +432,5 @@
     <string name="card_settings_sub">Sounds, Day/Night, Language, Sabbath</string>
     <string name="card_contact_title">Support &amp; Feedback</string>
     <string name="card_contact_sub">Direct contact with system administrators</string>
+    <string name="writeName">Enter your name</string>
 </resources>
