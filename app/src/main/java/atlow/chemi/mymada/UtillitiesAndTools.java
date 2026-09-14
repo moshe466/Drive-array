@@ -214,6 +214,7 @@ public class UtillitiesAndTools extends AppCompatActivity implements NavigationV
 
     @Override // androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
     protected void onCreate(Bundle bundle) {
+        LocalHelper.applyLocale(this);
         super.onCreate(bundle);
         resetTitle();
         setContentView(R.layout.activity_utillities_and_tools);

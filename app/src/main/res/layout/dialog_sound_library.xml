@@ -60,7 +60,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="בחר עבור מי מוגדר הצליל:"
+        android:text="@string/sound_lib_select_target"
         android:textColor="@color/ColorPrimary"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -190,7 +190,7 @@
             android:layout_width="wrap_content"
             android:layout_height="42dp"
             android:background="@drawable/shape_button_primary"
-            android:text="סיום וסגירה"
+            android:text="@string/sound_lib_done"
             android:textColor="@color/White"
             android:textSize="15sp"
             android:textStyle="bold"

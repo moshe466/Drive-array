@@ -286,10 +286,16 @@ public class SettingsPage extends AppCompatActivity implements NavigationView.On
         if (i != i2) {
             LocalHelper.setLocale(getApplicationContext(), str);
             LocalHelper.setLocale(this, str);
+            LocalHelper.applyLocale(this);
             SharedPreferences.Editor edit = getSharedPreferences("Settings", 0).edit();
             edit.putBoolean("WasLangChanged", true);
             edit.apply();
-            recreate();
+
+            Intent intent = new Intent(this, SettingsPage.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(0, 0);
         }
         dialogInterface.dismiss();
     }
@@ -439,6 +445,7 @@ public class SettingsPage extends AppCompatActivity implements NavigationView.On
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
     public void onCreate(Bundle bundle) {
+        LocalHelper.applyLocale(this);
         super.onCreate(bundle);
         resetTitle();
         setContentView(R.layout.activity_utillities_and_tools);
@@ -468,7 +475,7 @@ public class SettingsPage extends AppCompatActivity implements NavigationView.On
         this.Detect = this.navigationView.getMenu().findItem(R.id.detect);
         this.Detect.setIcon(z ? R.drawable.ic_detect_on : R.drawable.ic_detect_off).setChecked(z);
         if (bundle == null) {
-            displayFragment(this.settingsNotifications, false);
+            displayFragment(new SettingsNotifications(), false);
             this.navigationView.setCheckedItem(R.id.notification);
         }
         CreateOverlayPermissionDialog();
@@ -477,14 +484,14 @@ public class SettingsPage extends AppCompatActivity implements NavigationView.On
     @Override // com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int itemId = menuItem.getItemId();
-        Fragment fragment = this.settingsNotifications;
+        Fragment fragment = new SettingsNotifications();
         boolean z = false;
         switch (itemId) {
             case R.id.advanced /* 2131362025 */:
-                fragment = this.settingsAdvanced;
+                fragment = new SettingsAdvanced();
                 break;
             case R.id.ampm /* 2131362030 */:
-                fragment = this.settingsAmPm;
+                fragment = new SettingsAmpm();
                 break;
             case R.id.detect /* 2131362148 */:
                 detectionBtn(menuItem);
@@ -496,14 +503,19 @@ public class SettingsPage extends AppCompatActivity implements NavigationView.On
                 CreateLangDialog();
                 return true;
             case R.id.soundAndVib /* 2131362458 */:
-                fragment = this.settingsNotifSou;
+                fragment = new SettingsNotificationsSounds();
                 break;
             case R.id.tools /* 2131362525 */:
-                fragment = this.settingsTools;
+                fragment = new SettingsTools();
+                break;
+            case R.id.notification:
+            default:
+                fragment = new SettingsNotifications();
                 break;
         }
         if (z) {
             finish();
+            return true;
         }
         if (!this.isDrawerLocked) {
             this.drawerLayout.closeDrawer(GravityCompat.START, true);

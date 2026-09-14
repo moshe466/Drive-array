@@ -21,6 +21,7 @@ public class SimulatePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle bundle) {
+        LocalHelper.applyLocale(this);
         super.onCreate(bundle);
         setContentView(R.layout.activity_simulate_page);
 
@@ -29,7 +30,7 @@ public class SimulatePage extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("דמה מקרה");
+            actionBar.setTitle(R.string.title_simulate_case);
         }
 
         try {

@@ -65,7 +65,7 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="8dp"
-                    android:text="הגדרת זמני יום ולילה והתנהגות שקטה"
+                    android:text="@string/ampm_card_sub"
                     android:textColor="@color/textColorSecondary"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -73,13 +73,11 @@
                     app:layout_constraintStart_toEndOf="@+id/iv_ampm_icon"
                     app:layout_constraintTop_toBottomOf="@+id/tools_tv" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/tools_arrow_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="&gt;"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="22sp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_chevron_forward"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -409,7 +407,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="זמן בשניות עד סגירת החלון ללא מגע"
+                        android:text="@string/shabat_time_sub"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -417,13 +415,11 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/shabatTime_Title" />
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/tv_shabat_time_arrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="&gt;"
-                        android:textColor="@color/textColorSecondary"
-                        android:textSize="20sp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_chevron_forward"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -462,7 +458,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="התאמת עוצמת שמע נפרדת בהתראה"
+                        android:text="@string/volume_sub"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -470,13 +466,11 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/volume_Title" />
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/tv_volume_arrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="&gt;"
-                        android:textColor="@color/textColorSecondary"
-                        android:textSize="20sp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_chevron_forward"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

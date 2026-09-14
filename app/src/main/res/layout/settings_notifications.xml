@@ -66,7 +66,7 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="8dp"
-                    android:text="ספריית צלילים, מחזורי צלצול וסוגי קריאות"
+                    android:text="@string/sound_vib_card_sub"
                     android:textColor="@color/textColorSecondary"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -74,13 +74,11 @@
                     app:layout_constraintStart_toEndOf="@+id/iv_sound_vib_icon"
                     app:layout_constraintTop_toBottomOf="@+id/tools_tv" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/tools_arrow_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="&gt;"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="22sp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_chevron_forward"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

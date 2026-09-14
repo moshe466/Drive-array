@@ -86,7 +86,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="מערכת קליטת אירועים מוכנה לקבלת קריאות"
+                                android:text="@string/home_status_ready"
                                 android:textColor="#D1FAE5"
                                 android:textSize="11sp" />
                         </LinearLayout>

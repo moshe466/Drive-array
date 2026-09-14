@@ -18,6 +18,7 @@ public class UserGuideActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LocalHelper.applyLocale(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_guide);
 

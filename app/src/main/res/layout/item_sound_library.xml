@@ -45,7 +45,7 @@
                 android:id="@+id/tv_sound_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="שם הצליל"
+                android:text="@string/sound_item_title"
                 android:textColor="@color/textColorPrimary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -54,7 +54,7 @@
                 android:id="@+id/tv_sound_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="תיאור הצליל"
+                android:text="@string/sound_item_desc"
                 android:textColor="@color/Ocean"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:background="@drawable/shape_button_outline"
-            android:text="בחר"
+            android:text="@string/sound_item_select"
             android:textColor="@color/ColorPrimary"
             android:textSize="13sp"
             android:paddingStart="12dp"

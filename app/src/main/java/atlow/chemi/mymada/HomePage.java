@@ -386,6 +386,7 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle bundle) {
+        LocalHelper.applyLocale(this);
         setTheme(R.style.MyMaterialTheme);
         super.onCreate(bundle);
         resetTitle();
@@ -610,6 +611,7 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        LocalHelper.applyLocale(this);
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", 0);
         if (sharedPreferences.getBoolean("WasLangChanged", false)) {
             SharedPreferences.Editor edit = sharedPreferences.edit();

@@ -27,6 +27,7 @@ public class MokedPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle bundle) {
+        LocalHelper.applyLocale(this);
         super.onCreate(bundle);
         setContentView(R.layout.activity_moked_page);
 

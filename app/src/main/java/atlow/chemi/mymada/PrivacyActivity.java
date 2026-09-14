@@ -134,6 +134,7 @@ public class PrivacyActivity extends AppCompatActivity {
     @Override // androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
     @SuppressLint({"SetJavaScriptEnabled"})
     public void onCreate(Bundle bundle) {
+        LocalHelper.applyLocale(this);
         NetworkInfo activeNetworkInfo;
         super.onCreate(bundle);
         resetTitle();

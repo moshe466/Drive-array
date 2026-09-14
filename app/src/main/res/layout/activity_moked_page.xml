@@ -57,7 +57,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="חיוג ודיווח מהיר למוקדי החירום"
+                        android:text="@string/moked_hero_title"
                         android:textColor="@color/textColorPrimary"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -67,7 +67,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:gravity="center"
-                        android:text="לחץ על המוקד המבוקש להזנקת שיחה ישירה"
+                        android:text="@string/moked_hero_sub"
                         android:textColor="@color/textColorSecondary"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -98,14 +98,14 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
-                        android:contentDescription="איחוד הצלה"
+                        android:contentDescription="@string/callT1"
                         android:src="@drawable/ic_hatzalah_logo" />
 
                     <TextView
                         android:id="@+id/tv_title_hatzalah"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="איחוד הצלה"
+                        android:text="@string/callT1"
                         android:textColor="#EA580C"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -140,7 +140,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="חיוג למוקד איחוד הצלה"
+                            android:text="@string/moked_hatzalah_dial"
                             android:textColor="@color/White"
                             android:textSize="15sp"
                             android:textStyle="bold" />
@@ -173,14 +173,14 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_marginBottom="10dp"
-                        android:contentDescription="מגן דוד אדום"
+                        android:contentDescription="@string/callT2"
                         android:src="@drawable/ic_mda" />
 
                     <TextView
                         android:id="@+id/tv_title_mda"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="מגן דוד אדום"
+                        android:text="@string/callT2"
                         android:textColor="#DC2626"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -215,7 +215,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="חיוג למוקד מד״א"
+                            android:text="@string/moked_mda_dial"
                             android:textColor="@color/White"
                             android:textSize="15sp"
                             android:textStyle="bold" />
