@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="36" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.faketouch"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.screen.portrait"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.network"
+        android:required="false" />
+
+    <supports-screens
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:xlargeScreens="true"
+        android:anyDensity="true" />
+
+    <application
+        android:theme="@style/AppTheme"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:name="atlow.chemi.mymada.Applicatio"
+        android:allowBackup="false"
+        android:hardwareAccelerated="true"
+        android:supportsRtl="true"
+        android:fullBackupContent="false">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-7600269766434003~4255496174" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:theme="@style/MyMaterialTheme.Launcher"
+            android:label="@string/app_name"
+            android:name="atlow.chemi.mymada.HomePage"
+            android:screenOrientation="portrait"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:theme="@style/MyMaterialTheme.SmsRes"
+            android:label="@string/title_activity_sms_res"
+            android:name="atlow.chemi.mymada.smsRes"
+            android:launchMode="singleTask"
+            android:taskAffinity="atlow.chemi.mymada.alert"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true"
+            android:showForAllUsers="true"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+
+        <activity
+            android:theme="@style/MyMaterialTheme"
+            android:label="@string/title_activity_info"
+            android:name="atlow.chemi.mymada.InfoActivityKt"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+        </activity>
+
+        <activity
+            android:theme="@style/MyMaterialTheme"
+            android:label="@string/title_activity_user_guide"
+            android:name="atlow.chemi.mymada.UserGuideActivity"
+            android:parentActivityName="atlow.chemi.mymada.HomePage"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+        </activity>
+
+        <activity
+            android:theme="@style/MyMaterialTheme"
+            android:label="@string/title_activity_privacy"
+            android:name="atlow.chemi.mymada.PrivacyActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".InfoActivityKt" />
+        </activity>
+
+        <activity
+            android:theme="@style/MyMaterialTheme"
+            android:label="@string/title_activity_contact"
+            android:name="atlow.chemi.mymada.contactChatActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+        </activity>
+
+        <activity
+            android:theme="@style/MyMaterialTheme"
+            android:label="@string/title_activity_code"
+            android:name="atlow.chemi.mymada.codeRequest"
+            android:screenOrientation="portrait"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+        </activity>
+
+        <activity
+            android:theme="@style/MyMaterialTheme"
+            android:label="@string/title_activity_code_c"
+            android:name="atlow.chemi.mymada.codeC"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+
+        <activity
+            android:theme="@style/MyMaterialTheme"
+            android:label="@string/title_activity_moked_page"
+            android:name="atlow.chemi.mymada.MokedPage"
+            android:screenOrientation="portrait"
+            android:parentActivityName="atlow.chemi.mymada.HomePage"
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="atlow.chemi.mymada.HomePage" />
+        </activity>
+
+        <activity
+            android:theme="@style/MyMaterialTheme"
+            android:label="דמה מקרה"
+            android:name="atlow.chemi.mymada.SimulatePage"
+            android:screenOrientation="portrait"
+            android:parentActivityName="atlow.chemi.mymada.HomePage"
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="atlow.chemi.mymada.HomePage" />
+        </activity>
+
+        <activity
+            android:theme="@style/MyMaterialTheme"
+            android:label="@string/app_name"
+            android:name="atlow.chemi.mymada.lockPage"
+            android:screenOrientation="portrait"
+            android:parentActivityName="atlow.chemi.mymada.HomePage"
+            android:exported="false" />
+
+        <activity
+            android:theme="@style/MyMaterialTheme"
+            android:label="@string/button_h"
+            android:name="atlow.chemi.mymada.UtillitiesAndTools"
+            android:parentActivityName="atlow.chemi.mymada.HomePage"
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage" />
+        </activity>
+
+        <activity
+            android:theme="@style/MyMaterialTheme"
+            android:label="@string/title_activity_settings"
+            android:name="atlow.chemi.mymada.SettingsPage"
+            android:exported="true" />
+
+        <service
+            android:label="@string/smsMoni"
+            android:name="atlow.chemi.mymada.recieversAndServices.SMSMonitorService"
+            android:foregroundServiceType="specialUse"
+            android:exported="false" />
+
+        <service
+            android:name="atlow.chemi.mymada.recieversAndServices.FloatingWidgetService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:label="@string/metroMoni"
+            android:name="atlow.chemi.mymada.recieversAndServices.MetroService"
+            android:foregroundServiceType="mediaPlayback"
+            android:exported="false" />
+
+        <service
+            android:label="@string/notiMoni"
+            android:name="atlow.chemi.mymada.NotificationService"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            android:enabled="@bool/listener"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:label="@string/notiMoni"
+            android:name="atlow.chemi.mymada.recieversAndServices.NotificationServiceOld"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:enabled="@bool/listenerO"
+            android:exported="true"
+            android:description="@string/address">
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/service_config" />
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="atlow.chemi.mymada.helpers.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:label="@string/button_d"
+            android:icon="@drawable/ic_metronome_tile"
+            android:name="atlow.chemi.mymada.recieversAndServices.MyTileService"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:enabled="@bool/tile"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.quicksettings.ACTIVE_TILE"
+                android:value="false" />
+        </service>
+
+        <receiver
+            android:name="atlow.chemi.mymada.recieversAndServices.BootCompleteReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="atlow.chemi.mymada.recieversAndServices.ActionReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name="atlow.chemi.mymada.recieversAndServices.GrobootRec"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver
+            android:label="@string/button_d"
+            android:name="atlow.chemi.mymada.recieversAndServices.MetroWidget"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/metro_widget_info" />
+        </receiver>
+
+    </application>
+</manifest>

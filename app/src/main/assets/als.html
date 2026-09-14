@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>פרוטוקול ALS – החייאה מתקדמת</title>
+    <style>
+        @font-face {
+            font-family: 'OpenSansHebrew';
+            src: url('./fonts/opensanshebrew.ttf') format('truetype');
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'OpenSansHebrew', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #1a202c;
+            line-height: 1.65;
+            padding: 14px;
+            direction: rtl;
+            text-align: right;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .header-card {
+            background: linear-gradient(135deg, #2b6cb0 0%, #1a365d 100%);
+            color: #ffffff;
+            border-radius: 14px;
+            padding: 20px 16px;
+            text-align: center;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(43, 108, 176, 0.25);
+        }
+        .header-card h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .header-card .meta {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        .section-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 16px 14px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2e8f0;
+        }
+        .section-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #2b6cb0;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #bee3f8;
+        }
+        .sub-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-top: 10px;
+            margin-bottom: 6px;
+        }
+        p {
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+        ul, ol {
+            padding-right: 20px;
+            margin-bottom: 10px;
+        }
+        li {
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 5px;
+        }
+        .highlight-box {
+            background-color: #ebf8ff;
+            border-right: 4px solid #3182ce;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #2a4365;
+        }
+        .warning-box {
+            background-color: #fffaf0;
+            border-right: 4px solid #dd6b20;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #7b341e;
+        }
+        .pill-tag {
+            display: inline-block;
+            background: #e2e8f0;
+            color: #2d3748;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-bottom: 4px;
+        }
+        .pill-shock {
+            background: #feebc8;
+            color: #c05621;
+        }
+        .pill-noshock {
+            background: #fed7d7;
+            color: #9b2c2c;
+        }
+        .table-summary {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        .table-summary th {
+            background-color: #2b6cb0;
+            color: white;
+            padding: 8px 6px;
+            text-align: right;
+            border: 1px solid #bee3f8;
+            font-weight: 600;
+        }
+        .table-summary td {
+            padding: 8px 6px;
+            border: 1px solid #e2e8f0;
+            color: #2d3748;
+        }
+        .table-summary tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-card">
+            <h1>פרוטוקול ALS – החייאה מתקדמת</h1>
+            <div class="meta">גרסה: 1.0 | תאריך: 14.09.2026<br>ייעוד: כלי עזר באפליקציה לצוותים וכוננים</div>
+        </div>
+
+        <!-- 1. אלגוריתם דום לב מבוגר -->
+        <div class="section-card">
+            <div class="section-title">1. אלגוריתם דום לב במבוגר (Cardiac Arrest)</div>
+            <p>התחל CPR איכותי, ספק חמצן, חבר מוניטור/דפיברילטור.</p>
+
+            <div class="sub-title"><span class="pill-tag pill-shock">⚡ קצב בר-שוק (VF / Pulseless VT)</span></div>
+            <ol>
+                <li><strong>מתן שוק:</strong> ביפאזי (120–200J) או מונופאזי (360J).</li>
+                <li><strong>CPR מיידי:</strong> 2 דקות רצופות, גישת IV/IO.</li>
+                <li><strong>בדיקת קצב:</strong> אם עדיין בר-שוק -> שוק נוסף.</li>
+                <li><strong>CPR 2 דקות + תרופה 1:</strong> <strong>אפינפרין (Epinephrine) 1 מ"ג IV/IO</strong> כל 3–5 דקות. שקול נתיב אוויר מתקדם.</li>
+                <li><strong>בדיקת קצב:</strong> אם עדיין בר-שוק -> שוק נוסף.</li>
+                <li><strong>CPR 2 דקות + תרופה 2:</strong> <strong>אמיודרון (Amiodarone) 300 מ"ג IV/IO</strong> (מנה ראשונה), מנה שנייה: 150 מ"ג. <em>(חלופה: Lidocaine 1-1.5 mg/kg)</em>.</li>
+            </ol>
+
+            <div class="sub-title"><span class="pill-tag pill-noshock">⏹️ קצב שאינו בר-שוק (Asystole / PEA)</span></div>
+            <ol>
+                <li><strong>CPR מיידי:</strong> 2 דקות רצופות, גישת IV/IO.</li>
+                <li><strong>אפינפרין בהקדם האפשרי:</strong> 1 מ"ג IV/IO, לחזור כל 3–5 דקות.</li>
+                <li><strong>שקול נתיב אוויר מתקדם וקפנוגרפיה (ETCO2).</strong></li>
+                <li><strong>חפש וטפל בגורמים הפיכים (H's & T's).</strong></li>
+            </ol>
+        </div>
+
+        <!-- 2. גורמים הפיכים -->
+        <div class="section-card">
+            <div class="section-title">2. גורמים הפיכים – 5 H's ו-5 T's</div>
+            <div class="highlight-box">
+                <div style="font-weight:bold; margin-bottom:4px;">5 ה-H:</div>
+                <ul style="margin-bottom:8px;">
+                    <li><strong>Hypovolemia</strong> – תת-נפח (נוזלים / דם).</li>
+                    <li><strong>Hypoxia</strong> – חוסר חמצן (חמצון ונתיב אוויר).</li>
+                    <li><strong>Hydrogen ion (Acidosis)</strong> – חמצת.</li>
+                    <li><strong>Hypo/Hyperkalemia</strong> – הפרעות אשלגן (סידן, ביקרבונט).</li>
+                    <li><strong>Hypothermia</strong> – היפותרמיה (חימום).</li>
+                </ul>
+                <div style="font-weight:bold; margin-bottom:4px;">5 ה-T:</div>
+                <ul style="margin-bottom:0;">
+                    <li><strong>Tension Pneumothorax</strong> – חזה אוויר בלחץ (ניקוז).</li>
+                    <li><strong>Tamponade (Cardiac)</strong> – טמפונדה לבבית.</li>
+                    <li><strong>Toxins</strong> – הרעלות / מנת יתר (אנטידוט).</li>
+                    <li><strong>Thrombosis (Pulmonary)</strong> – תסחיף ריאתי PE.</li>
+                    <li><strong>Thrombosis (Coronary)</strong> – אוטם חריף בשריר הלב.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 3. נתיב אוויר וקפנוגרפיה -->
+        <div class="section-card">
+            <div class="section-title">3. נתיב אוויר מתקדם וקפנוגרפיה (ETCO2)</div>
+            <ul>
+                <li><strong>נתיב אוויר מתקדם:</strong> אינטובציה או מכשיר סופרא-גלוטי (I-Gel / LMA).</li>
+                <li><strong>לאחר נתיב אוויר מתקדם:</strong> הנשמה רציפה 1 כל 6 שניות (10 הנשמות בדקה) תוך המשך עיסויים ללא הפסקה!</li>
+                <li><strong>קפנוגרפיה (Waveform Capnography):</strong>
+                    <ul>
+                        <li>איכות עיסויים: ETCO2 &lt; 10 מ"מ כספית = יש לשפר עיסויים.</li>
+                        <li><strong>אינדיקציה ל-ROSC:</strong> קפיצה חדה ופתאומית ב-ETCO2 (&ge; 35–40 mmHg).</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 4. ברדיקרדיה וטכיקרדיה -->
+        <div class="section-card">
+            <div class="section-title">4. הפרעות קצב עם דופק</div>
+            
+            <div class="sub-title">📉 ברדיקרדיה תסמינית (דופק &lt; 50):</div>
+            <p><strong>אטרופין (Atropine):</strong> 1 מ"ג IV כל 3–5 דקות (עד 3 מ"ג מקסימום).</p>
+            <p>אם לא יעיל: קוצב חיצוני (TCP) או עירוי דופמין / אפינפרין.</p>
+
+            <div class="sub-title">📈 טכיקרדיה תסמינית (דופק &gt; 150):</div>
+            <ul>
+                <li><strong>לא יציב (ל"ד נמוך, כאב חזה, בצקת ריאות, ירידה בהכרה):</strong> היפוך חשמלי מסונכרן (Synchronized Cardioversion).</li>
+                <li><strong>יציב, קומפלקס צר וסדיר (SVT):</strong> גירוי וגאלי -> אדנוזין (Adenosine) 6 מ"ג מהיר -> אם נדרש: 12 מ"ג.</li>
+            </ul>
+        </div>
+
+        <!-- 5. טיפול לאחר החייאה ROSC -->
+        <div class="section-card">
+            <div class="section-title">5. טיפול לאחר החייאה (Post-ROSC Care)</div>
+            <ul>
+                <li><strong>חמצון ואוורור:</strong> שמירה על SpO2 של 92%–98% (הימנע מהיפראוקסיה).</li>
+                <li><strong>לחץ דם:</strong> שמירה על ל"ד סיסטולי &ge; 90 או MAP &ge; 65 (נוזלים / ווזופרסורים).</li>
+                <li><strong>אק"ג 12 לידים:</strong> זיהוי STEMI ופינוי דחוף לחדר צנתורים (PCI).</li>
+                <li><strong>בקרת טמפרטורה (TTM):</strong> שמירה ממוקדת על טמפרטורה (32°C–36°C), מניעת חום.</li>
+            </ul>
+        </div>
+
+        <!-- 6. טבלת מינונים ותרופות -->
+        <div class="section-card">
+            <div class="section-title">6. ריכוז מינוני תרופות החייאה מתקדמת</div>
+            <table class="table-summary">
+                <thead>
+                    <tr>
+                        <th>תרופה</th>
+                        <th>אינדיקציה</th>
+                        <th>מינון מבוגר</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Epinephrine</strong></td>
+                        <td>דום לב / ברדיקרדיה</td>
+                        <td>1 מ"ג IV/IO כל 3–5 דקות</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Amiodarone</strong></td>
+                        <td>VF / VT עקשן</td>
+                        <td>מנה 1: 300 מ"ג, מנה 2: 150 מ"ג</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lidocaine</strong></td>
+                        <td>חלופה לאמיודרון</td>
+                        <td>1–1.5 מ"ג/ק"ג, מנה 2: 0.5–0.75 מ"ג/ק"ג</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Atropine</strong></td>
+                        <td>ברדיקרדיה תסמינית</td>
+                        <td>1 מ"ג כל 3–5 דק' (מקסימום 3 מ"ג)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Adenosine</strong></td>
+                        <td>SVT יציב צר סדיר</td>
+                        <td>6 מ"ג מהיר + שטיפה; מנה 2: 12 מ"ג</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sodium Bicarbonate</strong></td>
+                        <td>חמצת, היפרקלמיה, TCA</td>
+                        <td>1 mEq/kg IV</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

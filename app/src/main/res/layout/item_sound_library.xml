@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_sound_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/White"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <!-- Play/Stop Action Button -->
+        <ImageButton
+            android:id="@+id/btn_play_sound"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="@drawable/shape_play_btn_bg"
+            android:src="@drawable/ic_play"
+            app:tint="@color/White"
+            android:contentDescription="השמעה" />
+
+        <!-- Sound Info -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp">
+
+            <TextView
+                android:id="@+id/tv_sound_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="שם הצליל"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_sound_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="תיאור הצליל"
+                android:textColor="@color/Ocean"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Selected Indicator Checkmark / Radio -->
+        <ImageView
+            android:id="@+id/iv_selected_indicator"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/ic_check_circle"
+            android:visibility="gone"
+            app:tint="@color/ColorPrimary" />
+
+        <!-- Select Button -->
+        <Button
+            android:id="@+id/btn_select_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:background="@drawable/shape_button_outline"
+            android:text="בחר"
+            android:textColor="@color/ColorPrimary"
+            android:textSize="13sp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

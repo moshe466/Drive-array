@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>פרוטוקול BLS – החייאה בסיסית</title>
+    <style>
+        @font-face {
+            font-family: 'OpenSansHebrew';
+            src: url('./fonts/opensanshebrew.ttf') format('truetype');
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'OpenSansHebrew', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #1a202c;
+            line-height: 1.65;
+            padding: 14px;
+            direction: rtl;
+            text-align: right;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .header-card {
+            background: linear-gradient(135deg, #c53030 0%, #9b2c2c 100%);
+            color: #ffffff;
+            border-radius: 14px;
+            padding: 20px 16px;
+            text-align: center;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(197, 48, 48, 0.25);
+        }
+        .header-card h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .header-card .meta {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        .section-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 16px 14px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2e8f0;
+        }
+        .section-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #9b2c2c;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #fed7d7;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #e53e3e;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 6px;
+        }
+        .sub-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-top: 10px;
+            margin-bottom: 6px;
+        }
+        p {
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+        ul, ol {
+            padding-right: 20px;
+            margin-bottom: 10px;
+        }
+        li {
+            font-size: 14px;
+            color: #4a5568;
+            margin-bottom: 5px;
+        }
+        .highlight-box {
+            background-color: #fff5f5;
+            border-right: 4px solid #e53e3e;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #742a2a;
+        }
+        .ratio-pill {
+            display: inline-block;
+            background: #2b6cb0;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin: 6px 0;
+            letter-spacing: 1px;
+        }
+        .table-summary {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 13.5px;
+        }
+        .table-summary th {
+            background-color: #2b6cb0;
+            color: white;
+            padding: 8px 6px;
+            text-align: right;
+            border: 1px solid #bee3f8;
+            font-weight: 600;
+        }
+        .table-summary td {
+            padding: 8px 6px;
+            border: 1px solid #e2e8f0;
+            color: #2d3748;
+        }
+        .table-summary tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-card">
+            <h1>פרוטוקול BLS – החייאה בסיסית</h1>
+            <div class="meta">גרסה: 1.0 | תאריך: 14.09.2026<br>ייעוד: כלי עזר באפליקציה לכוננים</div>
+        </div>
+
+        <!-- 1. מבוגר -->
+        <div class="section-card">
+            <div class="section-title">1. מבוגר – הערכה ראשונית</div>
+            
+            <div class="sub-title">🛡️ בטיחות</div>
+            <p>ודא בטיחות המטפל, המטופל והסביבה.</p>
+
+            <div class="sub-title">🔍 בדיקת המטופל</div>
+            <ol>
+                <li>בדוק הכרה.</li>
+                <li>הזמן סיוע והפעל את מערך החירום בהתאם לנוהל.</li>
+                <li>בקש AED / דפיברילטור.</li>
+                <li>בדוק בו־זמנית נשימה ודופק במשך לא יותר מ־10 שניות.</li>
+            </ol>
+
+            <div class="highlight-box">
+                <strong>אין דופק + אין נשימה תקינה / נשימות אגונליות:</strong><br>
+                התחל CPR מיד!
+            </div>
+
+            <div class="sub-title">⚡ עיסויים:</div>
+            <ul>
+                <li><strong>קצב:</strong> 100–120 בדקה</li>
+                <li><strong>עומק במבוגר:</strong> לפחות 5 ס"מ, תוך הימנעות מעומק העולה על 6 ס"מ.</li>
+                <li>אפשר חזרה מלאה של בית החזה לאחר כל עיסוי.</li>
+                <li>צמצם ככל האפשר הפסקות בעיסויים.</li>
+            </ul>
+
+            <div class="sub-title">🫁 יחס עיסויים והנשמות:</div>
+            <div><span class="ratio-pill">30:2</span></div>
+            <p>כל הנשמה במשך כ־1 שנייה ובנפח המספיק ליצירת עלייה נראית של בית החזה.</p>
+        </div>
+
+        <!-- 2. AED -->
+        <div class="section-card">
+            <div class="section-title">2. AED / דפיברילטור</div>
+            <p><strong>חבר AED / דפיברילטור מוקדם ככל האפשר.</strong></p>
+
+            <div class="sub-title">⚡ קצב בר־שוק:</div>
+            <ol>
+                <li>בצע שוק בהתאם להנחיית המכשיר / הפרוטוקול.</li>
+                <li>חזור מיד ל־CPR.</li>
+                <li>המשך CPR במשך כ־2 דקות.</li>
+                <li>בצע הערכה חוזרת בהתאם להנחיית המכשיר ולפרוטוקול.</li>
+            </ol>
+
+            <div class="sub-title">⏹️ קצב שאינו בר־שוק:</div>
+            <p>חזור מיד ל־CPR למשך כ־2 דקות והמשך בהתאם לאלגוריתם.</p>
+
+            <div class="highlight-box">
+                <strong>המשך החייאה עד:</strong>
+                <ul style="margin-bottom:0; padding-right:16px;">
+                    <li>חזרת סימני חיים / ROSC.</li>
+                    <li>העברת הטיפול לצוות מתקדם.</li>
+                    <li>הוראה אחרת בהתאם לפרוטוקול המאושר.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 3. דופק קיים ללא נשימה תקינה -->
+        <div class="section-card">
+            <div class="section-title">3. מבוגר – דופק קיים אך נשימה אינה תקינה</div>
+            <p>אם קיים דופק אך המטופל אינו נושם או שאינו נושם באופן מספק:</p>
+            <ul>
+                <li>פתח נתיב אוויר.</li>
+                <li>בצע הנשמה אחת כל 6 שניות.</li>
+                <li><strong>יעד:</strong> 10 הנשמות בדקה.</li>
+                <li>ודא עליית בית החזה.</li>
+                <li>הערך דופק מחדש בערך כל 2 דקות.</li>
+            </ul>
+            <div class="highlight-box">
+                <strong>אם הדופק נעלם:</strong> התחל CPR.<br>
+                <strong>בחשד להרעלת אופיואידים:</strong> טיפול ב־Naloxone בהתאם להכשרה ולפרוטוקול הארגוני המאושר.
+            </div>
+        </div>
+
+        <!-- 4. ילד -->
+        <div class="section-card">
+            <div class="section-title">4. ילד – מגיל שנה ועד הופעת סימני התבגרות</div>
+            <p>בדוק הכרה, נשימה ודופק במשך לא יותר מ־10 שניות.</p>
+            
+            <div class="highlight-box">
+                <strong>התחל CPR כאשר:</strong><br>
+                • אין דופק.<br>
+                או:<br>
+                • דופק מתחת ל־60 בדקה עם סימני פרפוזיה ירודה למרות חמצון והנשמה יעילים.
+            </div>
+
+            <div class="sub-title">יחס עיסויים והנשמות:</div>
+            <p>
+                <strong>מטפל יחיד:</strong> <span class="ratio-pill" style="font-size:14px;">30:2</span><br>
+                <strong>שני מטפלים:</strong> <span class="ratio-pill" style="font-size:14px; background:#2c5282;">15:2</span>
+            </p>
+
+            <div class="sub-title">עיסויים:</div>
+            <ul>
+                <li><strong>קצב:</strong> 100–120 בדקה</li>
+                <li><strong>עומק:</strong> לפחות שליש מהקוטר הקדמי־אחורי של בית החזה – כ־5 ס"מ.</li>
+            </ul>
+
+            <div class="sub-title">דופק קיים אך נשימה אינה מספקת:</div>
+            <p>בצע הנשמה אחת כל 2–3 שניות (20–30 הנשמות בדקה). הערך מחדש דופק ומצב המטופל בערך כל 2 דקות.</p>
+
+            <div class="sub-title">AED בילדים:</div>
+            <p>חבר מוקדם ככל האפשר. השתמש במערכת/מדבקות להנחתת אנרגיה לילדים כאשר הן זמינות ומתאימות.</p>
+        </div>
+
+        <!-- 5. תינוק -->
+        <div class="section-card">
+            <div class="section-title">5. תינוק – עד גיל שנה</div>
+            <p><em>(לא כולל החייאת יילוד מיד לאחר הלידה)</em></p>
+            <p>בדוק הכרה, נשימה ודופק במשך לא יותר מ־10 שניות.</p>
+
+            <div class="highlight-box">
+                <strong>התחל CPR כאשר:</strong><br>
+                • אין דופק.<br>
+                או:<br>
+                • דופק מתחת ל־60 בדקה עם סימני פרפוזיה ירודה למרות חמצון והנשמה יעילים.
+            </div>
+
+            <div class="sub-title">יחס עיסויים והנשמות:</div>
+            <p>
+                <strong>מטפל יחיד:</strong> <span class="ratio-pill" style="font-size:14px;">30:2</span><br>
+                <strong>שני מטפלים:</strong> <span class="ratio-pill" style="font-size:14px; background:#2c5282;">15:2</span>
+            </p>
+
+            <div class="sub-title">עיסויים בתינוק (AHA 2025):</div>
+            <ul>
+                <li><strong>קצב:</strong> 100–120 בדקה</li>
+                <li><strong>עומק:</strong> לפחות שליש מעומק בית החזה – כ־4 ס"מ.</li>
+                <li><strong style="color:#c53030;">עדכון AHA:</strong> טכניקת שתי האצבעות אינה מומלצת עוד!</li>
+                <li><strong>יש להשתמש בטכניקת:</strong> עקב כף יד אחת, או שני אגודלים המקיפים את בית החזה.</li>
+            </ul>
+
+            <div class="sub-title">דופק קיים אך נשימה אינה מספקת:</div>
+            <p>הנשמה אחת כל 2–3 שניות (20–30 בדקה).</p>
+        </div>
+
+        <!-- 6. חנק מבוגר וילד -->
+        <div class="section-card">
+            <div class="section-title">6. חסימת נתיב אוויר מגוף זר – מבוגר וילד</div>
+            <div class="sub-title">🟢 חסימה קלה:</div>
+            <p>כאשר המטופל מסוגל להשתעל בצורה יעילה: עודד אותו להמשיך להשתעל והמשך לעקוב אחר מצבו.</p>
+
+            <div class="sub-title">🔴 חסימה חמורה:</div>
+            <p><strong>סימנים:</strong> חוסר יכולת לדבר או לבכות, שיעול חלש/לא יעיל, חוסר יכולת לנשום, כחלון, ירידה בהכרה.</p>
+
+            <div class="highlight-box">
+                <strong>מטופל בהכרה (הנחיות AHA):</strong><br>
+                <strong>5 טפיחות גב</strong> ולאחריהן <strong>5 לחיצות בטן (היימליך)</strong>.<br>
+                המשך במחזורים של 5 ו־5 עד יציאת הגוף הזר או איבוד הכרה.
+            </div>
+
+            <div class="sub-title">⚠️ איבוד הכרה:</div>
+            <ol>
+                <li>התחל CPR החל מעיסויי חזה.</li>
+                <li>לפני ניסיון הנשמה, פתח את הפה.</li>
+                <li>אם ניתן לראות גוף זר – הוצא אותו.</li>
+            </ol>
+            <p style="color:#c53030; font-weight:bold;">אין לבצע סריקת אצבע עיוורת!</p>
+        </div>
+
+        <!-- 7. חנק תינוק -->
+        <div class="section-card">
+            <div class="section-title">7. חסימת נתיב אוויר – תינוק</div>
+            <div class="highlight-box">
+                <strong>תינוק בהכרה עם חסימה חמורה:</strong><br>
+                בצע: <strong>5 טפיחות גב</strong> ולאחריהן <strong>5 לחיצות חזה</strong>.<br>
+                המשך לסירוגין עד יציאת הגוף הזר או איבוד הכרה.<br>
+                <span style="color:#c53030; font-weight:bold;">⛔ אין לבצע לחיצות בטן בתינוק!</span>
+            </div>
+
+            <div class="sub-title">⚠️ התינוק איבד הכרה:</div>
+            <ol>
+                <li>התחל CPR בעיסויי חזה.</li>
+                <li>לפני הנשמה, בדוק את חלל הפה.</li>
+                <li>אם גוף זר נראה לעין – הוצא אותו.</li>
+            </ol>
+            <p style="color:#c53030; font-weight:bold;">אין לבצע סריקת אצבע עיוורת!</p>
+        </div>
+
+        <!-- 8. ROSC -->
+        <div class="section-card">
+            <div class="section-title">8. ROSC – חזרת מחזור דם עצמוני</div>
+            <p>עם הופעת סימני חיים / חזרת דופק:</p>
+            <ul>
+                <li>בצע הערכה מחודשת של ABC.</li>
+                <li>ודא נתיב אוויר.</li>
+                <li>הערך נשימה.</li>
+                <li>הערך מחזור דם.</li>
+                <li>ספק תמיכה נשימתית בהתאם לצורך ולפרוטוקול.</li>
+                <li>המשך ניטור רציף ככל שהציוד מאפשר.</li>
+                <li>היערך להמשך טיפול מתקדם ופינוי.</li>
+            </ul>
+        </div>
+
+        <!-- 9. תמצית -->
+        <div class="section-card">
+            <div class="section-title">9. תמצית מהירה להחייאה (Quick Reference)</div>
+            <table class="table-summary">
+                <thead>
+                    <tr>
+                        <th>קטגוריה</th>
+                        <th>יחס עיסוי/הנשמה</th>
+                        <th>עומק עיסוי</th>
+                        <th>קצב הנשמה (עם דופק)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>מבוגר</strong></td>
+                        <td>30:2</td>
+                        <td>5–6 ס"מ</td>
+                        <td>1 הנשמה כל 6 שניות</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ילד</strong></td>
+                        <td>30:2 (יחיד)<br>15:2 (זוג)</td>
+                        <td>כ־5 ס"מ</td>
+                        <td>1 הנשמה כל 2–3 שניות</td>
+                    </tr>
+                    <tr>
+                        <td><strong>תינוק</strong></td>
+                        <td>30:2 (יחיד)<br>15:2 (זוג)</td>
+                        <td>כ־4 ס"מ</td>
+                        <td>1 הנשמה כל 2–3 שניות</td>
+                    </tr>
+                    <tr>
+                        <td><strong>חנק מבוגר/ילד</strong></td>
+                        <td colspan="3">5 טפיחות גב + 5 לחיצות בטן (היימליך)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>חנק תינוק</strong></td>
+                        <td colspan="3">5 טפיחות גב + 5 לחיצות חזה (ללא לחיצות בטן!)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AED</strong></td>
+                        <td colspan="3">חיבור מוקדם ככל האפשר בכל גיל</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

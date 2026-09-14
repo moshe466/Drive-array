@@ -1,0 +1,2 @@
+rootProject.name = "ResponderNetworkReports"
+include ':app'

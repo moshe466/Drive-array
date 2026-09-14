@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircularProgressButton">
+        <attr name="finalCornerAngle" format="dimension" />
+        <attr name="initialCornerAngle" format="dimension" />
+        <attr name="spinning_bar_color" format="color|reference" />
+        <attr name="spinning_bar_padding" format="dimension" />
+        <attr name="spinning_bar_width" format="dimension" />
+    </declare-styleable>
+</resources>
