@@ -53,6 +53,11 @@ public class AudioGenerator {
                 this.audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, this.sampleRate, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT, bufSize, AudioTrack.MODE_STREAM);
             }
             if (this.audioTrack != null && this.audioTrack.getState() == AudioTrack.STATE_INITIALIZED) {
+                if (Build.VERSION.SDK_INT >= 21) {
+                    this.audioTrack.setVolume(AudioTrack.getMaxVolume());
+                } else {
+                    this.audioTrack.setStereoVolume(1.0f, 1.0f);
+                }
                 this.audioTrack.play();
             }
         } catch (Exception e) {
