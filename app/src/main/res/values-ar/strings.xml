@@ -9,7 +9,8 @@
     <string name="BGServiceTicker">التعرف على إشعارات المركز الجديدة</string>
     <string name="BGServiceTtl">الاستماع للرسائل في الخلفية</string>
     <string name="BGServiceTxt">التعرف على إشعارات المركز الجديدة في الخلفية</string>
-    <string name="CONANTest">حادث جديد. 14:18 العداد: 267 العنوان: فحص! القدس، رمز الإرسال: مرض بالغ، الرمز الطبي: توقف القلب</string>
+    <string name="CONANTest">حادث جديد. 14:18 العداد: 267 العنوان: فحص! القدس هميم جيميل 7، رمز الإرسال: مرض بالغ، الرمز الطبي: توقف القلب</string>
+    <string name="UHTest">إتحاد الإنقاذ: نداء طوارئ للمستجيبين. العنوان: فحص! القدس يرمياهو 78، رمز الإرسال: مرض بالغ، الرمز الطبي: ضيق التنفس</string>
     <string name="CONAN_reco_off">الكشف عن رسائل المستجيب معطل في الإعدادات.</string>
     <string name="ContracBetween">الفارق عن الانقباض السابق: %s</string>
     <string name="ContracDelete">حذف الانقباضات المحفوظة؟</string>

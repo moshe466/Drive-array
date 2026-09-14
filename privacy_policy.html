@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדיניות פרטיות | דיווחי מערך הכוננים - Privacy Policy</title>
+    <style>
+        :root {
+            --primary: #002244;
+            --primary-light: #0d47a1;
+            --accent: #e53e3e;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-sub: #475569;
+            --border: #e2e8f0;
+            --alert-bg: #fffbeb;
+            --alert-border: #fde68a;
+            --alert-text: #92400e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 24px 16px;
+        }
+
+        .lang-switch {
+            max-width: 840px;
+            margin: 0 auto 16px auto;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .lang-btn {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--primary);
+            text-decoration: none;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto 30px auto;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 36px 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border);
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 28px;
+        }
+
+        .app-badge {
+            display: inline-block;
+            background: #eff6ff;
+            color: var(--primary-light);
+            font-size: 13px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #dbeafe;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .date {
+            font-size: 14px;
+            color: var(--text-sub);
+            font-weight: 500;
+        }
+
+        .intro {
+            font-size: 16px;
+            color: var(--text-main);
+            margin-bottom: 28px;
+            background-color: #f1f5f9;
+            padding: 18px 20px;
+            border-radius: 14px;
+            border-right: 5px solid var(--primary);
+            line-height: 1.8;
+        }
+
+        .section {
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        p {
+            font-size: 15px;
+            color: var(--text-sub);
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-right: 0;
+            padding-left: 0;
+            margin: 12px 0 16px 0;
+        }
+
+        li {
+            font-size: 15px;
+            color: var(--text-sub);
+            position: relative;
+            padding-right: 22px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        [dir="ltr"] li {
+            padding-right: 0;
+            padding-left: 22px;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 20px;
+            position: absolute;
+            right: 4px;
+            top: -3px;
+        }
+
+        [dir="ltr"] li::before {
+            right: auto;
+            left: 4px;
+        }
+
+        .perm-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+        }
+
+        .perm-title {
+            font-weight: 700;
+            color: var(--primary-light);
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .alert-box {
+            margin-top: 32px;
+            padding: 18px 20px;
+            background-color: var(--alert-bg);
+            border: 1px solid var(--alert-border);
+            border-right: 5px solid #d97706;
+            border-radius: 12px;
+            font-size: 14.5px;
+            color: var(--alert-text);
+            line-height: 1.7;
+        }
+
+        [dir="ltr"] .alert-box {
+            border-right: 1px solid var(--alert-border);
+            border-left: 5px solid #d97706;
+        }
+
+        .alert-title {
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: #b45309;
+        }
+
+        .contact-card {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .contact-card a {
+            color: var(--primary-light);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 13px;
+            color: #94a3b8;
+            margin-top: 24px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px 18px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-switch">
+        <a href="#hebrew" class="lang-btn">עברית</a>
+        <a href="#english" class="lang-btn">English</a>
+    </div>
+
+    <!-- HEBREW VERSION -->
+    <div class="container" id="hebrew" dir="rtl">
+        <div class="header">
+            <div class="app-badge">דיווחי מערך הכוננים • Responder Dispatch Reports</div>
+            <h1>מדיניות פרטיות</h1>
+            <div class="date">תאריך עדכון אחרון: 14 בספטמבר 2026</div>
+        </div>
+
+        <div class="intro">
+            אנו מכבדים את פרטיות המשתמשים באפליקציית <strong>"דיווחי מערך הכוננים"</strong> (NotiForward). מסמך זה מפרט באופן ברור ושקוף את אופן פעולת האפליקציה, ההרשאות הנדרשות לפעולתה והמחויבות המוחלטת שלנו לאיסוף אפס מידע אישי.
+        </div>
+
+        <div class="section">
+            <h2>1. אי-איסוף מידע אישי (Zero Data Collection)</h2>
+            <p>האפליקציה <strong>אינה אוספת, שומרת, מעבירה או מוכרת שום מידע אישי</strong> של המשתמשים לשום גורם צד שלישי או לשרתים מרוחקים.</p>
+            <ul>
+                <li>אין צורך בהרשמה, הזדהות או יצירת חשבון משתמש.</li>
+                <li>איננו אוספים שמות, מספרי טלפון, כתובות דוא"ל, או פרטי זיהוי של המכשיר.</li>
+                <li>איננו שומרים או מעלים שום מידע רפואי או תוכן של קריאות חירום.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>2. הרשאות המכשיר ואופן השימוש בהן</h2>
+            <p>האפליקציה דורשת הרשאות מערכת ספציפיות המיועדות אך ורק לצורך תפקוד מבצעי מציל חיים עבור כונני רפואת חירום. כל העיבוד מבוצע <strong>באופן מקומי בלבד על גבי המכשיר</strong>:</p>
+
+            <div class="perm-card">
+                <div class="perm-title">🔔 גישה להתראות (Notification Listener Service)</div>
+                <p>משמשת באופן מקומי בלבד לזיהוי קבלת התראות חירום מאפליקציות הכוננים הרשמיות (כגון איחוד הצלה ומד"א), על מנת להשמיע צליל מותאם ולהקפיץ את פרטי האירוע לכונן ללא תלות במסך נעול.</p>
+            </div>
+
+            <div class="perm-card">
+                <div class="perm-title">📍 הרשאת מיקום (Location Access)</div>
+                <p>ההרשאה משמשת באופן מקומי ומיידי בלבד בעת קבלת קריאה לצורך חישוב מרחק אווירי וזמן הגעה משוער (ETA) ממיקום הכונן אל כתובת האירוע. המיקום <strong>אינו נשמר, אינו מנוטר ברקע ואינו מועבר לשום שרת</strong>.</p>
+            </div>
+
+            <div class="perm-card">
+                <div class="perm-title">📱 הצגה על גבי אפליקציות אחרות (System Overlay Window)</div>
+                <p>מאפשרת להקפיץ באופן מיידי את חלון פרטי הקריאה מעל מסך המכשיר גם כשהמכשיר נעול או בשימוש באפליקציה אחרת, לטובת מענה מהיר לאירוע חירום.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. שיתוף מידע עם צדדים שלישיים</h2>
+            <p>אין כל שיתוף, מכירה או העברת מידע לצדדים שלישיים. מאחר שהאפליקציה אינה אוספת מידע אישי, אין מאגר מידע קיים או מועבר.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. כלי עזר רפואיים ומחשבונים</h2>
+            <p>כל מחשבוני החירום הכלולים באפליקציה (מדדים חיוניים, סולם אפגאר, סולם גלזגו, מחשבון חמצן, מונה צירים ומטרונום) פועלים באופן מקומי לחלוטין. כל הנתונים המוזנים נמחקים או נשמרים מקומית על גבי המכשיר לפי בחירת המשתמש.</p>
+        </div>
+
+        <div class="section">
+            <h2>5. גיל המשתמשים</h2>
+            <p>האפליקציה מיועדת לשימוש על ידי כונני חירום ואנשי צוות רפואי בגילאי 18 ומעלה בלבד. האפליקציה אינה מיועדת לילדים ואינה אוספת מידע מקטינים.</p>
+        </div>
+
+        <div class="section">
+            <h2>6. אבטחת מידע</h2>
+            <p>האפליקציה פועלת בהתאם לתקני האבטחה המחמירים של פלטפורמת Android ומבטיחה שכל המידע התפעולי נשאר חסוי ומוגן במכשיר המשתמש בלבד.</p>
+        </div>
+
+        <div class="alert-box">
+            <div class="alert-title">הבהרה משפטית ומבצעית:</div>
+            האפליקציה הינה כלי עזר משלים בלבד ואינה מהווה תחליף למערכות השליטה והבקרה הרשמיות של ארגוני החירום. בכל מקרה של סתירה, יש לפעול תמיד על פי הוראות המוקד ונהלי הארגון הרשמיים.
+        </div>
+
+        <div class="contact-card">
+            <h3>שאלות ויצירת קשר</h3>
+            <p>לשאלות או בירורים בנוגע למדיניות הפרטיות, ניתן לפנות למפתח המערכת:</p>
+            <p>📧 דוא״ל: <a href="mailto:support@notiforward.com">support@notiforward.com</a></p>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 דיווחי מערך הכוננים. כל הזכויות שמורות.
+        </div>
+    </div>
+
+    <!-- ENGLISH VERSION FOR GOOGLE PLAY REVIEWERS -->
+    <div class="container" id="english" dir="ltr" style="margin-top: 36px;">
+        <div class="header">
+            <div class="app-badge">Responder Dispatch Reports (NotiForward)</div>
+            <h1>Privacy Policy</h1>
+            <div class="date">Last Updated: September 14, 2026</div>
+        </div>
+
+        <div class="intro">
+            We value your privacy. This Privacy Policy governs the <strong>"Responder Dispatch Reports"</strong> (NotiForward) application and explains how we handle permissions and data with an absolute zero-data collection guarantee.
+        </div>
+
+        <div class="section">
+            <h2>1. Zero Personal Data Collection</h2>
+            <p>The application <strong>does NOT collect, store, transmit, sell, or share any personal user data</strong> with any third party or remote server.</p>
+            <ul>
+                <li>No registration, login, or personal profile is required.</li>
+                <li>We do not collect names, phone numbers, email addresses, or unique device identifiers.</li>
+                <li>We do not store or upload any emergency incident details or medical data.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>2. Device Permissions and Their Purpose</h2>
+            <p>The application requests specific Android runtime permissions strictly necessary for real-time emergency dispatch alerts for first responders. All processing is done <strong>locally on the user's device</strong>:</p>
+
+            <div class="perm-card">
+                <div class="perm-title">🔔 Notification Listener Access</div>
+                <p>Used strictly locally on the device to detect emergency dispatch notifications from official first-responder apps (such as United Hatzalah and MDA), playing customized priority alert sounds and presenting incident details immediately to the responder.</p>
+            </div>
+
+            <div class="perm-card">
+                <div class="perm-title">📍 Location Access (ACCESS_FINE_LOCATION / ACCESS_COARSE_LOCATION)</div>
+                <p>Used strictly locally upon receiving an emergency call to compute the direct distance and estimated travel time (ETA) from the responder's current location to the incident address. Location data is <strong>never tracked in the background, never logged, and never uploaded to any server</strong>.</p>
+            </div>
+
+            <div class="perm-card">
+                <div class="perm-title">📱 Draw Over Other Apps (SYSTEM_ALERT_WINDOW)</div>
+                <p>Enables the emergency dispatch alert window to pop up instantly over the lock screen or any active app during life-saving emergency events.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Third-Party Sharing</h2>
+            <p>We do not share, sell, or transfer any user data to third parties. There is no remote database or telemetry repository containing user information.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. Children's Privacy</h2>
+            <p>The application is intended solely for adult emergency first responders and medical personnel aged 18 and older. We do not knowingly collect information from children under the age of 18.</p>
+        </div>
+
+        <div class="section">
+            <h2>5. Security</h2>
+            <p>The app is built adhering to the highest Android security standards, ensuring that all local operations remain sandboxed and secure on the user's device.</p>
+        </div>
+
+        <div class="alert-box">
+            <div class="alert-title">Important Disclaimer:</div>
+            This application is an auxiliary tool for first responders and does not replace official dispatch systems. In all situations, official dispatch orders and medical protocols take precedence.
+        </div>
+
+        <div class="contact-card">
+            <h3>Contact Us</h3>
+            <p>For questions or inquiries regarding this Privacy Policy, please contact:</p>
+            <p>📧 Email: <a href="mailto:support@notiforward.com">support@notiforward.com</a></p>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 Responder Dispatch Reports. All rights reserved.
+        </div>
+    </div>
+
+</body>
+</html>

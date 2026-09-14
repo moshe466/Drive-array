@@ -9,7 +9,8 @@
     <string name="BGServiceTicker">Detecting new dispatch notifications</string>
     <string name="BGServiceTtl">Listening for messages in background</string>
     <string name="BGServiceTxt">Detects new dispatch notifications in the background</string>
-    <string name="CONANTest">New incident. 14:18 Counter:267 Address: Test! Jerusalem HaMem Gimmel, Dispatch code: Adult illness, Medical code: Cardiac arrest</string>
+    <string name="CONANTest">New incident. 14:18 Counter:267 Address: Test! Jerusalem HaMem Gimmel 7, Dispatch code: Adult illness, Medical code: Cardiac arrest</string>
+    <string name="UHTest">United Hatzalah: First Responder Emergency Call. Address: Test! Jerusalem Yirmiyahu 78, Dispatch code: Adult illness, Medical code: Shortness of breath</string>
     <string name="CONAN_reco_off">Responder message detection disabled in settings.</string>
     <string name="ContracBetween">Interval from previous contraction: %s</string>
     <string name="ContracDelete">Delete saved contractions?</string>

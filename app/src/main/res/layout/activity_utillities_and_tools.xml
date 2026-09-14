@@ -1,45 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fitsSystemWindows="true"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:fitsSystemWindows="true">
+
     <com.google.android.material.appbar.AppBarLayout
-        android:theme="@style/AppTheme.AppBarOverlay"
         android:id="@+id/toolbarHolder"
-        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:background="?attr/colorPrimary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
-            android:paddingTop="18dp"
-            android:paddingBottom="8dp"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/ColorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
     </com.google.android.material.appbar.AppBarLayout>
+
     <atlow.chemi.mymada.helpers.MyDrawerLayout
         android:id="@+id/activity_Utils"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbarHolder">
+
         <FrameLayout
             android:id="@+id/frame"
-            android:paddingTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="@dimen/fragment_space"
-            android:paddingEnd="0dp"/>
+            android:paddingEnd="0dp"
+            android:paddingTop="6dp" />
+
         <com.google.android.material.navigation.NavigationView
-            android:layout_gravity="start"
             android:id="@+id/navigation"
-            android:background="@color/White"
-            android:fitsSystemWindows="true"
             android:layout_width="@dimen/navigation_drawer_width"
             android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/White"
+            android:fitsSystemWindows="true"
             app:itemBackground="@drawable/nav_item_background"
             app:itemIconTint="@drawable/nav_item_text"
-            app:itemTextColor="@drawable/nav_item_text"/>
+            app:itemTextColor="@drawable/nav_item_text" />
     </atlow.chemi.mymada.helpers.MyDrawerLayout>
 </RelativeLayout>

@@ -291,7 +291,9 @@ public class homeBAdapter extends RecyclerView.Adapter<homeBAdapter.MyViewHolder
             Intent intent = new Intent("atlow.chemi.MyMada.MADA_APP");
             intent.setAction("atlow.chemi.MyMada.MADA_APP");
             intent.putExtra("callT", 1);
-            intent.putExtra("text", "איחוד הצלה: קריאת חירום כוננים - בדיקה ודימוי מקרה");
+            intent.putExtra("text", this.mContext.getString(R.string.UHTest));
+            intent.putExtra("address", "ירושלים ירמיהו 78");
+            intent.putExtra("org_title", "איחוד הצלה - קריאת חירום");
             GrobootRec.madasApp(pendingIntent);
             LocalBroadcastManager.getInstance(this.mContext).sendBroadcast(intent);
             Toast.makeText(this.mContext, "דימוי קריאה - איחוד הצלה", Toast.LENGTH_SHORT).show();
@@ -317,6 +319,8 @@ public class homeBAdapter extends RecyclerView.Adapter<homeBAdapter.MyViewHolder
             intent.setAction("atlow.chemi.MyMada.MADA_APP");
             intent.putExtra("callT", 2);
             intent.putExtra("text", this.mContext.getString(R.string.CONANTest));
+            intent.putExtra("address", "ירושלים המ\"ג 7");
+            intent.putExtra("org_title", "מד״א - קריאת חירום");
             GrobootRec.madasApp(pendingIntent);
             LocalBroadcastManager.getInstance(this.mContext).sendBroadcast(intent);
             Toast.makeText(this.mContext, "דימוי קריאה - מד״א", Toast.LENGTH_SHORT).show();

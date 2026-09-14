@@ -9,7 +9,8 @@
     <string name="BGServiceTicker">מזהה הודעות חדשות ממד\"א</string>
     <string name="BGServiceTtl">מאזין ברקע להודעות</string>
     <string name="BGServiceTxt">מזהה הודעות חדשות שנשלחות ממוקד מד\"א ברקע</string>
-    <string name="CONANTest">אירוע חדש. 14:18 מונה:267 כתובת: בדיקה!!!ירושלים המ\"ג, קוד הזנקה: מחלה מבוגר, קוד רפואי: דום לב</string>
+    <string name="CONANTest">אירוע חדש. 14:18 מונה:267 כתובת: בדיקה!!! ירושלים המ\"ג 7, קוד הזנקה: מחלה מבוגר, קוד רפואי: דום לב</string>
+    <string name="UHTest">איחוד הצלה: קריאת חירום כוננים. כתובת: בדיקה!!! ירושלים ירמיהו 78, קוד הזנקה: מחלה מבוגר, קוד רפואי: קוצר נשימה</string>
     <string name="CONAN_reco_off">איתור הודעות כונן כבוי בהגדרות.</string>
     <string name="ContracBetween">הפרש מציר קודם: %s</string>
     <string name="ContracDelete">מחק צירים שמורים?</string>

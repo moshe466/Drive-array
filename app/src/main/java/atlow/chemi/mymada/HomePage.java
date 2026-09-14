@@ -495,9 +495,15 @@ public class HomePage extends AppCompatActivity {
             });
         }
 
-        // Initialize RecyclerView with 6 Action Cards
+        // Initialize RecyclerView with 5 Action Cards
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return position == 0 ? 2 : 1;
+            }
+        });
         ArrayList<HomeB> arrayList = new ArrayList<>();
         this.adapter = new homeBAdapter(this, arrayList);
         if (recyclerView != null) {
@@ -513,7 +519,6 @@ public class HomePage extends AppCompatActivity {
             arrayList.add(new HomeB("tes", R.drawable.new_tes));
             arrayList.add(new HomeB("gui", R.drawable.new_inf));
             arrayList.add(new HomeB("set", R.drawable.ic_settings));
-            arrayList.add(new HomeB("con", R.drawable.new_con));
             Crashlytics.log("HomeBtns Loaded properly!");
         } catch (Exception e3) {
             Crashlytics.log("HomeBtns caused crash!");
