@@ -17,40 +17,62 @@ import com.crashlytics.android.Crashlytics;
 public class ActionReceiver extends BroadcastReceiver {
     @Override // android.content.BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
-        NotificationManager notificationManager;
-        Intent intent2 = new Intent(context, (Class<?>) MetroService.class);
-        String stringExtra = intent.getStringExtra("action");
-        if (stringExtra != null) {
-            if (!stringExtra.equals("widget") || MetroService.running) {
-                if (stringExtra.equals("runInBG")) {
-                    context.stopService(intent2);
-                    context.getSharedPreferences("Settings", 0).edit().putBoolean("Mapp", false).apply();
-                    return;
-                } else if (MetroActivity.bound) {
-                    Toast.makeText(context, R.string.MetroBound, 0).show();
-                    return;
-                } else {
-                    context.stopService(intent2);
-                    return;
-                }
-            }
-            if (Build.VERSION.SDK_INT >= 26 && (notificationManager = (NotificationManager) context.getSystemService(NotificationManager.class)) != null && notificationManager.getNotificationChannel("runInBg") == null) {
-                NotificationChannelGroup notificationChannelGroup = new NotificationChannelGroup("grpOthers", "התראות שונות");
-                NotificationChannel notificationChannel = new NotificationChannel("runInBg", "פעילות ברקע", 1);
-                notificationChannel.enableVibration(false);
-                notificationChannel.enableLights(false);
-                notificationChannel.setShowBadge(false);
-                notificationChannel.setImportance(1);
-                notificationChannel.setDescription("חיוני כדי לאפשר זיהוי מקרים");
-                notificationChannel.setGroup("grpOthers");
-                notificationManager.createNotificationChannelGroup(notificationChannelGroup);
-                notificationManager.createNotificationChannel(notificationChannel);
-            }
+        if (context == null) return;
+        Intent metroIntent = new Intent(context, (Class<?>) MetroService.class);
+        String action = intent != null ? intent.getStringExtra("action") : null;
+
+        if (action == null || action.equals("stopM") || action.equals("stop")) {
             try {
-                ContextCompat.startForegroundService(context, intent2);
-            } catch (Exception e) {
-                Crashlytics.log("failed starting metronome widget");
-                Crashlytics.logException(e);
+                context.stopService(metroIntent);
+            } catch (Exception ignored) {
+            }
+            MetroService.running = false;
+            MyTileService.updateTileState(context);
+            return;
+        }
+
+        if (action.equals("runInBG")) {
+            try {
+                context.stopService(metroIntent);
+            } catch (Exception ignored) {
+            }
+            context.getSharedPreferences("Settings", 0).edit().putBoolean("Mapp", false).apply();
+            MetroService.running = false;
+            MyTileService.updateTileState(context);
+            return;
+        }
+
+        if (action.equals("widget")) {
+            if (MetroService.running) {
+                try {
+                    context.stopService(metroIntent);
+                } catch (Exception ignored) {
+                }
+                MetroService.running = false;
+                MyTileService.updateTileState(context);
+            } else {
+                if (Build.VERSION.SDK_INT >= 26) {
+                    NotificationManager nm = (NotificationManager) context.getSystemService(NotificationManager.class);
+                    if (nm != null && nm.getNotificationChannel("runInBg") == null) {
+                        NotificationChannelGroup group = new NotificationChannelGroup("grpOthers", "התראות שונות");
+                        NotificationChannel channel = new NotificationChannel("runInBg", "פעילות ברקע", NotificationManager.IMPORTANCE_LOW);
+                        channel.enableVibration(false);
+                        channel.enableLights(false);
+                        channel.setShowBadge(false);
+                        channel.setDescription("חיוני כדי לאפשר זיהוי מקרים");
+                        channel.setGroup("grpOthers");
+                        nm.createNotificationChannelGroup(group);
+                        nm.createNotificationChannel(channel);
+                    }
+                }
+                try {
+                    ContextCompat.startForegroundService(context, metroIntent);
+                    MetroService.running = true;
+                    MyTileService.updateTileState(context);
+                } catch (Exception e) {
+                    Crashlytics.log("failed starting metronome widget");
+                    Crashlytics.logException(e);
+                }
             }
         }
     }

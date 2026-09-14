@@ -118,6 +118,7 @@ public class MetroService extends Service {
             } catch (Exception ignored) {
             }
         }
+        MyTileService.updateTileState(this);
     }
 
     @Override // android.app.Service
@@ -155,7 +156,7 @@ public class MetroService extends Service {
                 .setContentTitle(getResources().getString(R.string.MetroServiceTtl))
                 .setContentText(getResources().getString(R.string.MetroServiceTxt))
                 .setContentIntent(activity)
-                .setSmallIcon(R.drawable.ic_metronome_tile)
+                .setSmallIcon(R.drawable.ic_tile_heart_metronome)
                 .setShowWhen(false)
                 .setColor(Color.argb(50, 255, 57, 50))
                 .addAction(R.drawable.ic_close, string, broadcast)
@@ -185,6 +186,7 @@ public class MetroService extends Service {
         }
         metro(this);
         running = true;
+        MyTileService.updateTileState(this);
         return START_STICKY;
     }
 }
