@@ -231,6 +231,21 @@ public class GrobootRec extends BroadcastReceiver {
             }
         }
 
+        // Wake up screen and CPU immediately
+        try {
+            android.os.PowerManager pm = (android.os.PowerManager) context.getSystemService(Context.POWER_SERVICE);
+            if (pm != null) {
+                android.os.PowerManager.WakeLock wakeLock = pm.newWakeLock(
+                        android.os.PowerManager.FULL_WAKE_LOCK |
+                        android.os.PowerManager.ACQUIRE_CAUSES_WAKEUP |
+                        android.os.PowerManager.ON_AFTER_RELEASE,
+                        "NotiForward:EmergencyWakeLock"
+                );
+                wakeLock.acquire(10000L); // 10 seconds
+            }
+        } catch (Exception ignored) {
+        }
+
         // Launch full-screen alert if enabled
         if (winEnabled) {
             try {

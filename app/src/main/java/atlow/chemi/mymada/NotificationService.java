@@ -21,8 +21,13 @@ import io.fabric.sdk.android.services.settings.SettingsJsonConstants;
 @TargetApi(19)
 /* loaded from: classes.dex */
 public class NotificationService extends NotificationListenerService {
+    private static final String TAG = "NotificationService";
     protected String a;
     Context b;
+
+    private static String sLastPackage = "";
+    private static String sLastNormalizedText = "";
+    private static long sLastNotifTime = 0;
 
     @Override // android.app.Service
     public void onCreate() {
@@ -38,8 +43,7 @@ public class NotificationService extends NotificationListenerService {
                 getActiveNotifications();
             } catch (Exception e) {
                 String message = e.getMessage();
-                message.getClass();
-                Log.e("getActiveNotification", message);
+                Log.e("getActiveNotification", message != null ? message : "");
                 Crashlytics.logException(e);
             }
         }
@@ -49,13 +53,9 @@ public class NotificationService extends NotificationListenerService {
     @TargetApi(24)
     public void onListenerDisconnected() {
         if (Build.VERSION.SDK_INT >= 24) {
-            NotificationListenerService.requestRebind(new ComponentName(this, (Class<?>) NotificationListenerService.class));
+            NotificationListenerService.requestRebind(new ComponentName(this, (Class<?>) NotificationService.class));
         }
     }
-
-    private static String sLastPackage = "";
-    private static String sLastNormalizedText = "";
-    private static long sLastNotifTime = 0;
 
     private static String normalizeText(String text) {
         if (text == null) return "";
@@ -72,8 +72,8 @@ public class NotificationService extends NotificationListenerService {
             return true;
         }
 
-        // Deduplication window of 8000ms for identical content from same package
-        if (pkg != null && pkg.equals(sLastPackage) && (now - sLastNotifTime < 8000)) {
+        // Deduplication window of 1500ms for exact identical content from same package
+        if (pkg != null && pkg.equals(sLastPackage) && (now - sLastNotifTime < 1500)) {
             if (combined.equalsIgnoreCase(sLastNormalizedText) || 
                 (!normBody.isEmpty() && normBody.equalsIgnoreCase(sLastNormalizedText))) {
                 return true;
@@ -88,207 +88,253 @@ public class NotificationService extends NotificationListenerService {
 
     private static boolean isSystemMessage(String text) {
         if (text == null || text.trim().isEmpty()) return true;
+        String lower = text.toLowerCase();
+
+        // Never filter if it contains emergency dispatch or active call indicators
+        String[] emergencyKeywords = {
+            "אירוע", "הזנקה", "קריאה", "כתובת", "נפגע", "חולה", "החייאה", "טראומה",
+            "דום לב", "ת.ד", "תאונה", "מנהלתי", "מינהלתי", "צוות", "קבוצה", "שירות",
+            "שובצת", "ביטול", "טופס", "טפסים", "forms", "event", "incident", "dispatch",
+            "חיסיון רפואי", "giverespect", "איוונט"
+        };
+        for (String ek : emergencyKeywords) {
+            if (lower.contains(ek)) {
+                return false;
+            }
+        }
+
         String[] blacklist = {
-            "מחובר", "שירות פעיל", "השירות פועל", "עדכון מיקום", "בדיקת תקשורת",
+            "שירות פעיל", "השירות פועל", "עדכון מיקום", "בדיקת תקשורת",
             "סנכרון", "חיבור למוקד", "התחברות למערכת", "שירות רקע", "סטטוס כונן",
             "אין קריאות", "מצב כוננות", "פעיל ברקע", "שירות המיקום", "פועל ברקע",
-            "connected", "syncing", "background service", "location service"
+            "מחובר למוקד", "connected", "syncing", "background service", "location service",
+            "service running", "running in background", "mda service"
         };
         for (String b : blacklist) {
-            if (text.contains(b)) {
+            if (lower.contains(b)) {
                 return true;
             }
         }
         return false;
     }
 
+    private boolean isTargetEmergencyPackage(String pkg) {
+        if (pkg == null) return false;
+        String p = pkg.toLowerCase();
+        return p.contains("mdaemergency") || 
+               p.contains("mda.health") || 
+               p.contains("il.org.mda") ||
+               p.contains("com.mda") ||
+               p.equals("atlow.mymadaadmin") || 
+               p.contains("com.uh.sf") ||
+               p.contains("hatzalah");
+    }
+
     @Override // android.service.notification.NotificationListenerService
     public void onNotificationPosted(StatusBarNotification statusBarNotification) {
-        String str;
-        String replace;
-        int i = 1;
-        String str2;
-        boolean z = getSharedPreferences("Settings", 0).getBoolean("Mapp", false);
-        Log.e("Mapp is!", z ? "true" : "false");
-        if (!z || statusBarNotification == null || statusBarNotification.getPackageName() == null) {
-            return;
-        }
-
-        // Ignore ongoing / foreground service notifications (e.g., app running in background, GPS active)
-        if (statusBarNotification.isOngoing()) {
-            return;
-        }
-        Notification notification = statusBarNotification.getNotification();
-        if (notification == null) {
-            return;
-        }
-        if ((notification.flags & Notification.FLAG_ONGOING_EVENT) != 0 ||
-            (notification.flags & Notification.FLAG_NO_CLEAR) != 0 ||
-            (notification.flags & Notification.FLAG_FOREGROUND_SERVICE) != 0) {
+        if (statusBarNotification == null || statusBarNotification.getPackageName() == null) {
             return;
         }
 
         String packageName = statusBarNotification.getPackageName();
-        if (packageName.contains("mdaemergency") || packageName.contains("mda.health") || packageName.equals("atlow.mymadaadmin") || packageName.equals("com.uh.sf")) {
-            Bundle bundle = notification.extras;
-            LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(this.b);
-            try {
-                str = notification.tickerText != null ? notification.tickerText.toString() : "";
-            } catch (Exception unused) {
-                str = "";
+
+        // Ignore notifications originating from our own app
+        if (packageName.equalsIgnoreCase(getPackageName())) {
+            return;
+        }
+
+        boolean isAppEnabled = getSharedPreferences("Settings", 0).getBoolean("Mapp", false);
+        if (!isAppEnabled) {
+            return;
+        }
+
+        Notification notification = statusBarNotification.getNotification();
+        if (notification == null) {
+            return;
+        }
+
+        if (!isTargetEmergencyPackage(packageName)) {
+            return;
+        }
+
+        Bundle bundle = notification.extras;
+        String title = "";
+        String text = "";
+        String ticker = "";
+
+        try {
+            if (notification.tickerText != null) {
+                ticker = notification.tickerText.toString().trim();
             }
-            String string = bundle != null ? bundle.getString(NotificationCompat.EXTRA_TITLE) : null;
-            try {
-                if (bundle != null && bundle.getCharSequence(NotificationCompat.EXTRA_BIG_TEXT) != null) {
-                    str2 = bundle.getCharSequence(NotificationCompat.EXTRA_BIG_TEXT).toString();
-                } else if (bundle != null && bundle.getCharSequence(NotificationCompat.EXTRA_TEXT) != null) {
-                    str2 = bundle.getCharSequence(NotificationCompat.EXTRA_TEXT).toString();
-                } else {
-                    str2 = "";
-                }
-                this.a = str2;
-            } catch (Exception e) {
-                this.a = "";
-                Crashlytics.log("notification text is null!\n" + e);
+        } catch (Exception ignored) {
+        }
+
+        if (bundle != null) {
+            // Title extraction (safe CharSequence)
+            CharSequence titleCs = bundle.getCharSequence(NotificationCompat.EXTRA_TITLE);
+            if (titleCs == null || titleCs.length() == 0) {
+                titleCs = bundle.getCharSequence(NotificationCompat.EXTRA_TITLE_BIG);
+            }
+            if (titleCs == null || titleCs.length() == 0) {
+                titleCs = bundle.getCharSequence("android.title");
+            }
+            if (titleCs != null) {
+                title = titleCs.toString().trim();
             }
 
-            // Deduplication check
-            if (isDuplicateNotification(packageName, string, this.a)) {
-                return;
+            // Body extraction (safe CharSequence)
+            CharSequence textCs = bundle.getCharSequence(NotificationCompat.EXTRA_BIG_TEXT);
+            if (textCs == null || textCs.length() == 0) {
+                textCs = bundle.getCharSequence(NotificationCompat.EXTRA_TEXT);
             }
-
-            Intent intent = new Intent("MADA_APP");
-            intent.addFlags(268435456);
-            intent.addFlags(67108864);
-            intent.putExtra("pack", packageName);
-            intent.putExtra("ticker", str);
-            intent.putExtra(SettingsJsonConstants.PROMPT_TITLE_KEY, string);
-            intent.putExtra("text", this.a);
-
-            if ("com.uh.sf".equals(packageName)) {
-                String fullText = ((string != null ? string : "") + " " + (this.a != null ? this.a : "")).trim();
-                if (isSystemMessage(fullText)) {
-                    return;
-                }
-
-                boolean isTeam = fullText.contains("רחובות 143") ||
-                                 fullText.contains("מ 44") ||
-                                 fullText.contains("הודעת צוות") ||
-                                 fullText.contains("הודעת קבוצה") ||
-                                 fullText.contains("צוות כוננים");
-
-                boolean isAdministrative = fullText.contains("FORMS") ||
-                                           fullText.contains("טפסים") ||
-                                           fullText.contains("מילוי טופס") ||
-                                           fullText.contains("פריסה מבצעית") ||
-                                           fullText.contains("ניהול תקפים") ||
-                                           fullText.contains("איוונט") ||
-                                           fullText.contains("GIVERESPECT") ||
-                                           fullText.contains("כבוד המת") ||
-                                           fullText.contains("גנרל") ||
-                                           fullText.contains("GENERAL") ||
-                                           fullText.contains("שובצת לאירוע") ||
-                                           fullText.contains("שיבוץ") ||
-                                           fullText.contains("צוותת") ||
-                                           fullText.contains("ביטול אירוע") ||
-                                           fullText.contains("אירוע בוטל") ||
-                                           fullText.contains("סיום אירוע") ||
-                                           fullText.contains("מנהלתי") ||
-                                           fullText.contains("מינהלתי") ||
-                                           fullText.contains("הודעת מוקד") ||
-                                           fullText.contains("עדכון מוקד") ||
-                                           fullText.contains("הודעת סניף") ||
-                                           fullText.contains("תזכורת");
-
-                if (isTeam) {
-                    intent.putExtra("callT", 7);
-                    intent.putExtra("org_title", "איחוד הצלה - הודעת צוות");
-                } else if (isAdministrative) {
-                    boolean showAdmin = getSharedPreferences("Settings", 0).getBoolean("callT4", true);
-                    if (!showAdmin) {
-                        return;
-                    }
-                    intent.putExtra("callT", 4);
-                    intent.putExtra("org_title", "איחוד הצלה - הודעה מנהלתית");
-                } else {
-                    intent.putExtra("callT", 1);
-                    intent.putExtra("org_title", "איחוד הצלה - קריאת חירום");
-                }
-                intent.putExtra("address", this.a != null && !this.a.isEmpty() ? this.a : (string != null ? string : "קריאת חירום"));
-                intent.putExtra("sms", this.a != null ? this.a : "");
-                intent.putExtra("title", string != null ? string : "איחוד הצלה");
-            } else if (string != null) {
-                if (string.equals("מגן דוד אדום") || string.equals("מערך הכוננים הלאומי")) {
-                    return;
-                }
-                String str3 = "*אירוע חדש*";
-                if (string.contains("*אירוע חדש*") || string.contains("*New Event*")) {
-                    if (this.a.contains("שירות") || this.a.contains("כלכלה") || this.a.contains("תפילה")) {
-                        intent.putExtra("callT", 6);
-                        intent.putExtra("org_title", "מד״א - הודעת שירות");
-                    } else if (this.a.contains("מנהלתי") || this.a.contains("מינהלתי") || this.a.contains("משמרת בנה")) {
-                        intent.putExtra("callT", 4);
-                        intent.putExtra("org_title", "מד״א - הודעה מנהלתית");
-                    } else {
-                        if (!this.a.contains("אירוע חדש")) {
-                            if (this.a.contains("הודעת קבוצת")) {
-                                i = 3; // group message
-                                intent.putExtra("org_title", "מד״א - הודעת קבוצה");
-                            } else if (this.a.contains("הודעת צוות")) {
-                                i = 7; // team message
-                                intent.putExtra("org_title", "מד״א - הודעת צוות");
-                            } else if (this.a.contains("על מידע זה חל חיסיון רפואי")) {
-                                i = 5;
-                                intent.putExtra("org_title", "מד״א - חיסיון רפואי");
-                            } else {
-                                i = 2; // MDA new event
-                                intent.putExtra("org_title", "מד״א - קריאת חירום");
-                            }
-                        } else {
-                            i = 2; // MDA new event
-                            intent.putExtra("org_title", "מד״א - קריאת חירום");
+            if (textCs == null || textCs.length() == 0) {
+                textCs = bundle.getCharSequence(NotificationCompat.EXTRA_SUB_TEXT);
+            }
+            if (textCs == null || textCs.length() == 0) {
+                textCs = bundle.getCharSequence(NotificationCompat.EXTRA_INFO_TEXT);
+            }
+            if (textCs == null || textCs.length() == 0) {
+                textCs = bundle.getCharSequence(NotificationCompat.EXTRA_SUMMARY_TEXT);
+            }
+            if (textCs == null || textCs.length() == 0) {
+                CharSequence[] textLines = bundle.getCharSequenceArray(NotificationCompat.EXTRA_TEXT_LINES);
+                if (textLines != null && textLines.length > 0) {
+                    StringBuilder sb = new StringBuilder();
+                    for (CharSequence line : textLines) {
+                        if (line != null && line.length() > 0) {
+                            if (sb.length() > 0) sb.append("\n");
+                            sb.append(line);
                         }
-                        intent.putExtra("callT", i);
                     }
-                    if (!string.contains("אירוע חדש")) {
-                        replace = string.replace("*New Event*", "");
-                        intent.putExtra("time", replace);
-                    }
-                } else {
-                    str3 = "*הודעה מנהלתית חדשה*";
-                    if (!string.contains("*הודעה מנהלתית חדשה*")) {
-                        return;
-                    }
-                    intent.putExtra("callT", 4);
-                    intent.putExtra("org_title", "מד״א - הודעה מנהלתית");
-                    if (this.a.contains("שירות") || this.a.contains("כלכלה") || this.a.contains("תפילה")) {
-                        intent.putExtra("callT", 6);
-                        intent.putExtra("org_title", "מד״א - הודעת שירות");
-                    }
-                    if (this.a.contains("על מידע זה חל חיסיון רפואי")) {
-                        intent.putExtra("callT", 5);
-                        intent.putExtra("org_title", "מד״א - חיסיון רפואי");
-                    }
+                    textCs = sb.toString();
                 }
-                replace = string.replace(str3, "");
-                intent.putExtra("time", replace);
-                intent.putExtra("address", this.a != null && !this.a.isEmpty() ? this.a : string);
-                intent.putExtra("sms", this.a != null ? this.a : "");
-                intent.putExtra("title", string);
-            } else {
-                return;
             }
+            if (textCs != null) {
+                text = textCs.toString().trim();
+            }
+        }
 
-            if (intent.getIntExtra("callT", 0) == 4) {
+        if (title.isEmpty() && !ticker.isEmpty()) {
+            title = ticker;
+        }
+        if (text.isEmpty() && !ticker.isEmpty() && !ticker.equals(title)) {
+            text = ticker;
+        }
+
+        String fullText = (title + " " + text).trim();
+        if (fullText.isEmpty() || isSystemMessage(fullText)) {
+            return;
+        }
+
+        this.a = text;
+
+        // Deduplication check
+        if (isDuplicateNotification(packageName, title, text)) {
+            return;
+        }
+
+        Intent intent = new Intent("MADA_APP");
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("pack", packageName);
+        intent.putExtra("ticker", ticker);
+        intent.putExtra(SettingsJsonConstants.PROMPT_TITLE_KEY, title);
+        intent.putExtra("text", text);
+
+        boolean isUh = packageName.contains("com.uh") || packageName.contains("hatzalah");
+
+        if (isUh) {
+            boolean isTeam = fullText.contains("רחובות 143") ||
+                             fullText.contains("מ 44") ||
+                             fullText.contains("הודעת צוות") ||
+                             fullText.contains("הודעת קבוצה") ||
+                             fullText.contains("צוות כוננים");
+
+            boolean isAdministrative = fullText.contains("FORMS") ||
+                                       fullText.contains("טפסים") ||
+                                       fullText.contains("מילוי טופס") ||
+                                       fullText.contains("פריסה מבצעית") ||
+                                       fullText.contains("ניהול תקפים") ||
+                                       fullText.contains("איוונט") ||
+                                       fullText.contains("GIVERESPECT") ||
+                                       fullText.contains("כבוד המת") ||
+                                       fullText.contains("גנרל") ||
+                                       fullText.contains("GENERAL") ||
+                                       fullText.contains("שובצת לאירוע") ||
+                                       fullText.contains("שיבוץ") ||
+                                       fullText.contains("צוותת") ||
+                                       fullText.contains("ביטול אירוע") ||
+                                       fullText.contains("אירוע בוטל") ||
+                                       fullText.contains("סיום אירוע") ||
+                                       fullText.contains("מנהלתי") ||
+                                       fullText.contains("מינהלתי") ||
+                                       fullText.contains("הודעת מוקד") ||
+                                       fullText.contains("עדכון מוקד") ||
+                                       fullText.contains("הודעת סניף") ||
+                                       fullText.contains("תזכורת");
+
+            if (isTeam) {
+                intent.putExtra("callT", 7);
+                intent.putExtra("org_title", "איחוד הצלה - הודעת צוות");
+            } else if (isAdministrative) {
                 boolean showAdmin = getSharedPreferences("Settings", 0).getBoolean("callT4", true);
                 if (!showAdmin) {
                     return;
                 }
+                intent.putExtra("callT", 4);
+                intent.putExtra("org_title", "איחוד הצלה - הודעה מנהלתית");
+            } else {
+                intent.putExtra("callT", 1);
+                intent.putExtra("org_title", "איחוד הצלה - קריאת חירום");
+            }
+            intent.putExtra("address", !text.isEmpty() ? text : (!title.isEmpty() ? title : "קריאת חירום"));
+            intent.putExtra("sms", !text.isEmpty() ? text : title);
+            intent.putExtra("title", !title.isEmpty() ? title : "איחוד הצלה");
+        } else {
+            // MDA parsing
+            int callType = 2; // Default MDA emergency call
+            String orgTitle = "מד״א - קריאת חירום";
+            String time = "";
+
+            if (fullText.contains("שירות") || fullText.contains("כלכלה") || fullText.contains("תפילה")) {
+                callType = 6;
+                orgTitle = "מד״א - הודעת שירות";
+            } else if (fullText.contains("מנהלתי") || fullText.contains("מינהלתי") || fullText.contains("משמרת בנה") || fullText.contains("*הודעה מנהלתית")) {
+                boolean showAdmin = getSharedPreferences("Settings", 0).getBoolean("callT4", true);
+                if (!showAdmin) {
+                    return;
+                }
+                callType = 4;
+                orgTitle = "מד״א - הודעה מנהלתית";
+            } else if (fullText.contains("הודעת קבוצת") || fullText.contains("הודעת קבוצה")) {
+                callType = 3;
+                orgTitle = "מד״א - הודעת קבוצה";
+            } else if (fullText.contains("הודעת צוות")) {
+                callType = 7;
+                orgTitle = "מד״א - הודעת צוות";
+            } else if (fullText.contains("על מידע זה חל חיסיון רפואי")) {
+                callType = 5;
+                orgTitle = "מד״א - חיסיון רפואי";
+            } else {
+                callType = 2;
+                orgTitle = "מד״א - קריאת חירום";
             }
 
-            GrobootRec.madasApp(notification.contentIntent);
-            localBroadcastManager.sendBroadcast(intent);
+            if (title.contains("*New Event*")) {
+                time = title.replace("*New Event*", "").trim();
+            } else if (title.contains("*אירוע חדש*")) {
+                time = title.replace("*אירוע חדש*", "").trim();
+            }
+
+            intent.putExtra("callT", callType);
+            intent.putExtra("org_title", orgTitle);
+            intent.putExtra("time", time);
+            intent.putExtra("address", !text.isEmpty() ? text : title);
+            intent.putExtra("sms", !text.isEmpty() ? text : title);
+            intent.putExtra("title", !title.isEmpty() ? title : "מד״א");
         }
+
+        GrobootRec.madasApp(notification.contentIntent);
+        LocalBroadcastManager.getInstance(this.b).sendBroadcast(intent);
     }
 
     @Override // android.service.notification.NotificationListenerService
