@@ -451,7 +451,7 @@ public class smsRes extends AppCompatActivity {
                             @Override
                             public void run() {
                                 if (tvDistanceEta != null) {
-                                    tvDistanceEta.setText("📍 לא ניתן לחשב זמן");
+                                    tvDistanceEta.setText("📍 לא ניתן לחשב זמן הגעה");
                                     tvDistanceEta.setVisibility(View.VISIBLE);
                                 }
                             }
@@ -481,7 +481,7 @@ public class smsRes extends AppCompatActivity {
                         int minutes = Math.max(1, Math.round((drivingKm / 35.0f) * 60.0f));
 
                         final String resultText = String.format(Locale.getDefault(),
-                                "📍 %s  •  %.1f ק\"מ  |  ⏱️ כ-%d דק'", cleanAddress, drivingKm, minutes);
+                                "📍 %.1f ק\"מ  •  ⏱️ כ-%d דק'", drivingKm, minutes);
 
                         runOnUiThread(new Runnable() {
                             @Override
@@ -497,7 +497,7 @@ public class smsRes extends AppCompatActivity {
                             @Override
                             public void run() {
                                 if (tvDistanceEta != null) {
-                                    tvDistanceEta.setText("📍 לא ניתן לחשב זמן");
+                                    tvDistanceEta.setText("📍 לא ניתן לחשב זמן הגעה");
                                     tvDistanceEta.setVisibility(View.VISIBLE);
                                 }
                             }
@@ -508,7 +508,7 @@ public class smsRes extends AppCompatActivity {
                         @Override
                         public void run() {
                             if (tvDistanceEta != null) {
-                                tvDistanceEta.setText("📍 לא ניתן לחשב זמן");
+                                tvDistanceEta.setText("📍 לא ניתן לחשב זמן הגעה");
                                 tvDistanceEta.setVisibility(View.VISIBLE);
                             }
                         }
