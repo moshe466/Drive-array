@@ -59,8 +59,8 @@
 
                         <ImageView
                             android:id="@+id/ivHeroStatusIcon"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
                             android:src="@drawable/ic_detect_on"
                             android:contentDescription="@null" />
 
@@ -78,7 +78,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/home_status_active"
                                 android:textColor="@color/White"
-                                android:textSize="15sp"
+                                android:textSize="17sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -88,7 +88,7 @@
                                 android:layout_marginTop="2dp"
                                 android:text="@string/home_status_ready"
                                 android:textColor="#D1FAE5"
-                                android:textSize="11sp" />
+                                android:textSize="13sp" />
                         </LinearLayout>
 
                         <androidx.appcompat.widget.SwitchCompat
@@ -101,8 +101,8 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginBottom="14dp"
                         android:background="#20FFFFFF" />
 
                     <!-- Permissions Readiness Pills -->
@@ -136,7 +136,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/home_perm_overlay"
                                 android:textColor="@color/White"
-                                android:textSize="11sp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -146,7 +146,7 @@
                                 android:layout_marginTop="2dp"
                                 android:text="@string/home_perm_ok"
                                 android:textColor="#A7F3D0"
-                                android:textSize="9sp" />
+                                android:textSize="11sp" />
                         </LinearLayout>
 
                         <!-- Notifications Pill -->
@@ -174,7 +174,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/home_perm_notif"
                                 android:textColor="@color/White"
-                                android:textSize="11sp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -184,7 +184,7 @@
                                 android:layout_marginTop="2dp"
                                 android:text="@string/home_perm_ok"
                                 android:textColor="#A7F3D0"
-                                android:textSize="9sp" />
+                                android:textSize="11sp" />
                         </LinearLayout>
 
                         <!-- Location Pill -->
@@ -211,7 +211,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/home_perm_location"
                                 android:textColor="@color/White"
-                                android:textSize="11sp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -221,7 +221,7 @@
                                 android:layout_marginTop="2dp"
                                 android:text="@string/home_perm_ok"
                                 android:textColor="#A7F3D0"
-                                android:textSize="9sp" />
+                                android:textSize="11sp" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
