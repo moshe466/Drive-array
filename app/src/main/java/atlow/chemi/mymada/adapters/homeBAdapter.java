@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -396,6 +397,21 @@ public class homeBAdapter extends RecyclerView.Adapter<homeBAdapter.MyViewHolder
         }
         if (myViewHolder.ivIcon != null) {
             myViewHolder.ivIcon.setImageResource(iconRes);
+            ViewGroup.LayoutParams lp = myViewHolder.ivIcon.getLayoutParams();
+            if (lp != null) {
+                if ("tol".equals(tag)) {
+                    // 2.5x larger for Tools & Utilities (כלי עזר) icon
+                    int widthPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 170, this.mContext.getResources().getDisplayMetrics());
+                    int heightPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 90, this.mContext.getResources().getDisplayMetrics());
+                    lp.width = widthPx;
+                    lp.height = heightPx;
+                } else {
+                    int sizePx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 68, this.mContext.getResources().getDisplayMetrics());
+                    lp.width = sizePx;
+                    lp.height = sizePx;
+                }
+                myViewHolder.ivIcon.setLayoutParams(lp);
+            }
         }
 
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
